@@ -7,9 +7,14 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background: #f9f9f9;
+    background:linear-gradient(#5672cf,#0098B8);
     min-height: 100vh;
     overflow-x: hidden;
+    
+}
+
+body::-webkit-scrollbar{
+    display: none;
 }
 header{
     position: absolute;
@@ -24,13 +29,13 @@ header{
 }
 .logo{
     font-size: 2em;
-    color: #359381;
+    color: #ffffff;
     pointer-events: none;
     margin-right: 270px;
 }
 .navigation a {
     text-decoration: none;
-    color: #359381;
+    color: #ffffff;
     padding: 6px 15px;
     border-radius: 20px;
     margin: 0 10px;
@@ -63,7 +68,7 @@ header{
 
 .sec {
     position: relative;
-    background: #003329;
+    background: #2985C3;
     padding: 100px;
 }
 .sec h2{
