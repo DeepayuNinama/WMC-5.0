@@ -7,10 +7,10 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background:linear-gradient(#5672cf,#0098B8);
+    /* background:linear-gradient(#5672cf,#0098B8); */
+    background:linear-gradient(#0c0e12,#131924);
     min-height: 100vh;
     overflow-x: hidden;
-    
 }
 
 body::-webkit-scrollbar{
@@ -21,7 +21,6 @@ body::-webkit-scrollbar{
     justify-content: center;
     align-items: center;
     min-height: 110vh;
-    background: rgba(39, 39, 39, 0.4);
 }
 .nav{
     position: absolute;
@@ -89,7 +88,8 @@ body::-webkit-scrollbar{
 
 .sec {
     position: relative;
-    background: #2985C3;
+    /* colour here */
+    background: #131924;
     padding: 100px;
 }
 .sec h2{
