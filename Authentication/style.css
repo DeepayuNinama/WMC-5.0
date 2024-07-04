@@ -7,6 +7,8 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     cursor: url(./img/cursor.png), auto;
+    
+    
 }
 body{
     background: url("./img/1.jpg");
@@ -14,6 +16,8 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow: hidden;
+    
+    
 }
 .wrapper{
     display: flex;
