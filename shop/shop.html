@@ -60,18 +60,18 @@
 
 
         <h2 class="section-title">GTA 5 - CAR COLLECTION</h2>
-        <div class="search-box">
-            <i class="bx bx-search" id="cart-icon"></i>
-            <input type="search" name="" id="" placeholder="Search Model">
 
+        <div class="search">
+            <i class="bx bx-search" id="cart-icon"></i>
+            <input type="text" name="" id="search-item" placeholder="Search Model" onkeyup="search()">
         </div>
             
 
         <!-- Content -->
-         <div class="shop-content">
+         <div class="shop-content" id="shop-content">
             <!-- Product Box: 1 -->
              <div class="product-box">
-                <img src="./img/product1.jpg" alt="" class="product-img">
+                <img src="./img/1.jpg" alt="" class="product-img">
                 <h2 class="product-title">TEXeT 2</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
@@ -81,8 +81,8 @@
 
              <!-- Product Box: 2 -->
              <div class="product-box">
-                <img src="./img/product2.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
+                <img src="./img/2.jpg" alt="" class="product-img">
+                <h2 class="product-title">Tblabla</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
                 <span class="price">$25000.00</span>
@@ -91,8 +91,8 @@
 
              <!-- Product Box: 3 -->
              <div class="product-box">
-                <img src="./img/product3.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
+                <img src="./img/3.jpg" alt="" class="product-img">
+                <h2 class="product-title">haha 1haha 1</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
                 <span class="price">$25000.00</span>
@@ -101,8 +101,8 @@
 
              <!-- Product Box: 4 -->
              <div class="product-box">
-                <img src="./img/product4.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
+                <img src="./img/4.jpg" alt="" class="product-img">
+                <h2 class="product-title">haha 1</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
                 <span class="price">$25000.00</span>
@@ -111,7 +111,7 @@
 
              <!-- Product Box: 5 -->
              <div class="product-box">
-                <img src="./img/product5.jpg" alt="" class="product-img">
+                <img src="./img/5.jpg" alt="" class="product-img">
                 <h2 class="product-title">TEXT 1</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
@@ -121,7 +121,7 @@
 
              <!-- Product Box: 6 -->
              <div class="product-box">
-                <img src="./img/product6.jpg" alt="" class="product-img">
+                <img src="./img/6.jpg" alt="" class="product-img">
                 <h2 class="product-title">TEXT 1</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
@@ -131,7 +131,7 @@
 
              <!-- Product Box: 7 -->
              <div class="product-box">
-                <img src="./img/product7.jpg" alt="" class="product-img">
+                <img src="./img/7.jpg" alt="" class="product-img">
                 <h2 class="product-title">TEXT 1</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
@@ -141,7 +141,78 @@
 
              <!-- Product Box: 8 -->
              <div class="product-box">
-                <img src="./img/product8.jpg" alt="" class="product-img">
+                <img src="./img/8.jpg" alt="" class="product-img">
+                <h2 class="product-title">TEXT 1</h2>
+                <h3 class="product-desc">manufucturer: name</h3>
+                <h3 class="product-desc">Type: name</h3>
+                <span class="price">$25000.00</span>
+                <i class="bx bx-shopping-bag add-cart"></i>
+             </div>
+
+             <!-- Product Box: 9 -->
+             <div class="product-box">
+                <img src="./img/9.jpg" alt="" class="product-img">
+                <h2 class="product-title">TEXT 1</h2>
+                <h3 class="product-desc">manufucturer: name</h3>
+                <h3 class="product-desc">Type: name</h3>
+                <span class="price">$25000.00</span>
+                <i class="bx bx-shopping-bag add-cart"></i>
+             </div>
+
+             <!-- Product Box: 10 -->
+             <div class="product-box">
+                <img src="./img/10.jpg" alt="" class="product-img">
+                <h2 class="product-title">TEXT 1</h2>
+                <h3 class="product-desc">manufucturer: name</h3>
+                <h3 class="product-desc">Type: name</h3>
+                <span class="price">$25000.00</span>
+                <i class="bx bx-shopping-bag add-cart"></i>
+             </div>
+
+             <!-- Product Box: 11 -->
+             <div class="product-box">
+                <img src="./img/11.jpg" alt="" class="product-img">
+                <h2 class="product-title">TEXT 1</h2>
+                <h3 class="product-desc">manufucturer: name</h3>
+                <h3 class="product-desc">Type: name</h3>
+                <span class="price">$25000.00</span>
+                <i class="bx bx-shopping-bag add-cart"></i>
+             </div>
+
+             <!-- Product Box: 12 -->
+             <div class="product-box">
+                <img src="./img/12.jpg" alt="" class="product-img">
+                <h2 class="product-title">TEXT 1</h2>
+                <h3 class="product-desc">manufucturer: name</h3>
+                <h3 class="product-desc">Type: name</h3>
+                <span class="price">$25000.00</span>
+                <i class="bx bx-shopping-bag add-cart"></i>
+             </div>
+
+             <!-- Product Box: 13 -->
+             <div class="product-box">
+                <img src="./img/13.jpg" alt="" class="product-img">
+                <h2 class="product-title">TEXT 1</h2>
+                <h3 class="product-desc">manufucturer: name</h3>
+                <h3 class="product-desc">Type: name</h3>
+                <span class="price">$25000.00</span>
+                <i class="bx bx-shopping-bag add-cart"></i>
+             </div>
+
+             <!-- Product Box: 14 -->
+
+             <div class="product-box">
+                <img src="./img/14.jpg" alt="" class="product-img">
+                <h2 class="product-title">TEXT 1</h2>
+                <h3 class="product-desc">manufucturer: name</h3>
+                <h3 class="product-desc">Type: name</h3>
+                <span class="price">$25000.00</span>
+                <i class="bx bx-shopping-bag add-cart"></i>
+             </div>
+
+             <!-- Product Box: 15 -->
+             <div class="product-box">
+                <img src="./img/15.jpg" alt="" class="product-img">
                 <h2 class="product-title">TEXT 1</h2>
                 <h3 class="product-desc">manufucturer: name</h3>
                 <h3 class="product-desc">Type: name</h3>
@@ -293,9 +364,32 @@
                 total = Math.round(total * 100) / 100;
 
                 document.getElementsByClassName("total-price")[0].innerText = "$" + total;
-            
+        }
+
+        // Search Function
+
+        const search = () =>{
+            // fetching user input 
+            const searchbox = document.getElementById("search-item").value.toUpperCase();
+            const storeitems = document.getElementById("shop-content")
+            const product = document.querySelectorAll(".product-box")
+            const pname = document.getElementsByTagName("h2")
+
+            for (var i = 0; i < pname.length; i++){
+                let match = product[i].getElementsByTagName('h2')[0];
+
+                if(match){
+                    let textvalue = match.textContent || match.innerHTML
+
+                    if(textvalue.toUpperCase().indexOf(searchbox) > -1){
+                        product[i].style.display = "";
+                    }
+                    else{
+                        product[i].style.display = "none";
+                    }
+                }
+            }
         }
     </script>
-
 </body>
 </html>

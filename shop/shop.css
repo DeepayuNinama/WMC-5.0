@@ -194,24 +194,25 @@ header{
 }
 
 
-.search-box{
+.search{
+    display: flex;
+    align-items: center;
     width: 250px;
     height: 40px;
     background-color: #131924;
     border-radius: 2px;
-    display: flex;
-    align-items: center;
+    
     padding: 3px;
     margin-bottom: 20px;
 }
 
-.search-box > i{
+.search > i{
     font-size: 20px;
     color: var(--main-color);
     padding: 10px;
 }
 
-.search-box > input{
+.search > input{
     flex: 1;
     height: 20px;
     border: none;
@@ -219,7 +220,15 @@ header{
     font-size: 12px;
     background: transparent;
     color: #fff;
+}
 
+/* search box */
+
+.search_bx2{
+    width: 200px;
+    height: 20px;
+    color: rgb(0, 0, 0);
+    border: 1px solid #fff;
 }
 
 .shop {
