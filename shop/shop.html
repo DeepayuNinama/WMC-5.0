@@ -123,8 +123,8 @@
              <div class="product-box">
                 <img src="./img/6.jpg" alt="" class="product-img">
                 <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
+                <h3 class="product-desc">newme</h3>
+                <h3 class="product-desc">thistoo</h3>
                 <span class="price">$25000.00</span>
                 <i class="bx bx-shopping-bag add-cart"></i>
              </div>
@@ -373,15 +373,23 @@
             const searchbox = document.getElementById("search-item").value.toUpperCase();
             const storeitems = document.getElementById("shop-content")
             const product = document.querySelectorAll(".product-box")
-            const pname = document.getElementsByTagName("h2")
+            
+            const pname = document.getElementsByTagName("h2") // Product name
+            const dname = document.getElementsByTagName("h3") // Product Desc
 
             for (var i = 0; i < pname.length; i++){
-                let match = product[i].getElementsByTagName('h2')[0];
+                let matchp = product[i].getElementsByTagName('h2')[0];
+                let matchd = product[i].getElementsByTagName('h3')[0];
 
-                if(match){
-                    let textvalue = match.textContent || match.innerHTML
+                if(matchp || matchd){
+                    let textvalue = matchp.textContent || matchp.innerHTML 
+                    let descvalue = matchd.textContent || matchd.innerHTML
 
                     if(textvalue.toUpperCase().indexOf(searchbox) > -1){
+                        product[i].style.display = "";
+                    }
+
+                    else if(descvalue.toUpperCase().indexOf(searchbox) > -1){
                         product[i].style.display = "";
                     }
                     else{
@@ -390,6 +398,7 @@
                 }
             }
         }
+
     </script>
 </body>
 </html>
