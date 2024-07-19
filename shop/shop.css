@@ -28,11 +28,6 @@ img{
     width: 100%;
 }
 
-body{
-    color: var(--text-color);
-
-}
-
 .container{
     max-width: 1068px;
     margin: auto;
@@ -58,6 +53,7 @@ header{
     padding: 10px;
 }
 
+
 .nav i{
     color: #171427;
 }
@@ -66,6 +62,10 @@ header{
     font-size: 2rem;
     color: var(--bg-color);
     font-weight: 600;
+}
+
+.navlist{
+    color: #fff;
 }
 
 .navlist{

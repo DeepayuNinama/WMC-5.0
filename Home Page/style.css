@@ -97,19 +97,18 @@ body::-webkit-scrollbar{
     font-size: 3em;
     color: #fff;
 }
-.sec p {
+.sec .content-text {
     padding-top: 30px;
     font-size: 1em;
-    color: #fff;
+    color: #ffffffc9;
     font-weight: 300;
 }
 
-/* * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-} */
+.sec p{
+    /* font-size: 2rem; */
+    color: #6070ff;
+    font-weight: 600;
+}
 
 /* card */
 
