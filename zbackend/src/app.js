@@ -12,10 +12,25 @@ app.use(express.static(static_path));
 app.set("view engine", "hbs"); 
 app.set("views", templates_path);
 
-// Disply Perticular file from HTML
+// Landing Page
 app.get("/", (req, res) =>{
     res.render("index")
 });
+
+// Services Page
+app.get("/services", (req, res) =>{
+    res.render("services");
+})
+
+// Creators Page
+app.get("/creators", (req, res) =>{
+    res.render("creators");
+})
+
+// About Page
+app.get("/about", (req, res) =>{
+    res.render("about");
+})
 
 app.listen(port, () => {
     console.log(`server is running at Port no. ${port}`)
