@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const bcrypt = require("bcryptjs");
 
 require("./db/conn");
 const Register = require("./models/registers");
@@ -22,8 +23,30 @@ app.get("/", (req, res) =>{ // Landing Page
     res.render("index")
 });
 
-app.get("/login", (req, res) =>{ // Services-Login Page
+app.get("/login", (req, res) =>{ // Services-Login Page // GET
     res.render("login");
+})
+
+app.post("/login", async(req, res) =>{ // Services-Login Page // POST
+    
+    try {
+        const email = req.body.email;
+        const password = req.body.password;
+
+        const useremail = await Register.findOne({emailid:email});
+
+        const isMatch = await bcrypt.compare(password, useremail.password);
+
+        if(isMatch){
+            res.status(201).render("dashboard");
+        }
+        else{
+            res.send("Password does not Match");
+        }
+    } 
+    catch (error) {
+        res.status(400).send("Login Failed");
+    }
 })
 
 app.get("/register", (req, res) =>{ // Services-Signup Page
@@ -44,6 +67,9 @@ app.post("/register", async(req, res) =>{ // Creating New user in DB
                 confirmpassword : cpassword
             })
 
+            // Password Hash
+
+
         const registered = await registerUser.save();
         res.status(201).render("dashboard");
         }
@@ -52,7 +78,7 @@ app.post("/register", async(req, res) =>{ // Creating New user in DB
         }
     }
         catch(error) {
-            es.status(400).send(error);
+            res.status(400).send(error);
         }   
 })
 
