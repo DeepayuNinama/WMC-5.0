@@ -71,10 +71,8 @@ app.post("/register", async(req, res) =>{ // Creating New user in DB
             })
 
             // Password Hash
-
-
-        const registered = await registerUser.save();
-        res.status(201).render("dashboard");
+            const registered = await registerUser.save();
+            res.status(201).render("dashboard");
         }
         else{
             res.send("Password are not matching")
