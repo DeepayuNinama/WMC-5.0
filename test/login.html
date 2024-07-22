@@ -24,9 +24,14 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
-            
-            
         }
+
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;  
+        }
+
         .wrapper{
             display: flex;
             justify-content: center;
@@ -92,14 +97,16 @@
             display: none;
         }
         .form-box{
-            position: relative;
+            position: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 512px;
-            height: 420px;
-            overflow: hidden;
-            z-index: 2;
+
+            background: rgba(145, 145, 145, 0.194);
+            backdrop-filter: blur(10px);
+            height: 520px;
+            width: 550px;
+            border-radius: 15px;
         }
         .login-container{
             position: absolute;
@@ -108,6 +115,7 @@
             display: flex;
             flex-direction: column;
             transition: .5s ease-in-out;
+            padding-left: 30px;
         }
         .register-container{
             position: absolute;
@@ -141,7 +149,7 @@
         }
         .input-field{
             font-size: 15px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.265);
             color: #fff;
             height: 50px;
             width: 100%;
@@ -197,6 +205,10 @@
         }
         .two label a:hover{
             text-decoration: underline;
+        }
+
+        .form_login{
+            margin-bottom: 470px;
         }
         @media only screen and (max-width: 786px){
             .nav-button{
@@ -257,6 +269,12 @@
     <title>Mafia | Login & Registration</title>
 </head>
 <body>
+
+<!-- video src -->
+<video autoplay muted loop id="myVideo">
+    <source src="bgvideo.mp4" type="video/mp4">
+</video>
+
  <div class="wrapper">
     <nav class="nav">
         <div class="nav-logo">
@@ -273,50 +291,53 @@
     </nav>
 
 <!--- Form box --->    
-    <form action="/dashboard" method="POST">
-    <div class="form-box">
-         
-        <!------------------- login form -------------------------->
-        <div class="register-container" id="login">
-            <div class="top">
-                <span>Have an account ? <a href="#" >Login</a></span>
-                <header>Sign Up</header>
-            </div>
-            <div class="two-forms">
-                <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Firstname">
-                    <i class="bx bx-user"></i>
-                </div>
-                <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Lastname">
-                    <i class="bx bx-user"></i>
-                </div>
-            </div>
-            <div class="input-box">
-                <input type="text" class="input-field" placeholder="Email">
-                <i class="bx bx-envelope"></i>
-            </div>
-            <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password">
-                <i class="bx bx-lock-alt"></i>
-            </div>
-            <div class="input-box">
-                <!-- register -->
-                <input type="submit" class="submit" value="Register">
-            </div>
-            <div class="two-col">
-                <div class="one">
-                    <input type="checkbox" id="register-check">
-                    <label for="register-check"> Remember Me</label>
-                </div>
-            </div>
-        </div>
-        </form>
-
-        <!------------------- registration form -------------------------->
-        
-    </div>
+    <!--- Form --->
     
+    <div class="form-box">
+        <!------------------- login form -------------------------->
+        <form action="/register"  class="form_login" method="POST"> 
+            <div class="login-container" id="login">
+                <div class="top">
+                    <div class="top">
+                    <span>Have an account ? <a href="./login" >Login</a></span>
+                    <header>Sign Up</header>
+                </div>
+                </div>
+                <div class="two-forms">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Firstname" name="firstname">
+                        <i class="bx bx-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Lastname" name="lastname">
+                        <i class="bx bx-user"></i>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Enter your Email" name="emailid">
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" placeholder="create password" name="password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" placeholder="confirmpassword" name="confirmpassword">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <!-- submit btn -->
+                    <input type="submit" class="submit" value="Register">
+                </div>
+                <div class="two-col">
+                    <!-- <div class="one">
+                        <input type="checkbox" id="login-check">
+                        <label for="login-check"> Remember Me</label>
+                    </div> -->
+                </div>
+            </div>
+        </form>
+    </div>
 </div>   
 
 <script>
@@ -329,6 +350,8 @@
     function login() {
         x.style.left = "4px";
         y.style.right = "-520px";
+        a.className += " white-btn";
+        b.className = "btn";
         x.style.opacity = 1;
         y.style.opacity = 0;
     }
@@ -336,6 +359,8 @@
     function register() {
         x.style.left = "-510px";
         y.style.right = "5px";
+        a.className = "btn";
+        b.className += " white-btn";
         x.style.opacity = 0;
         y.style.opacity = 1;
     }

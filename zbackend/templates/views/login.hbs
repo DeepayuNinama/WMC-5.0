@@ -19,14 +19,18 @@
             
         }
         body{
-            background: url("../image/carbg.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
-            
-            
         }
+
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;  
+        }
+
         .wrapper{
             display: flex;
             justify-content: center;
@@ -92,14 +96,16 @@
             display: none;
         }
         .form-box{
-            position: relative;
+            position: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 512px;
-            height: 420px;
-            overflow: hidden;
-            z-index: 2;
+
+            background: rgba(145, 145, 145, 0.194);
+            backdrop-filter: blur(10px);
+            height: 430px;
+            width: 550px;
+            border-radius: 15px;
         }
         .login-container{
             position: absolute;
@@ -108,6 +114,7 @@
             display: flex;
             flex-direction: column;
             transition: .5s ease-in-out;
+            padding-left: 30px;
         }
         .register-container{
             position: absolute;
@@ -141,7 +148,7 @@
         }
         .input-field{
             font-size: 15px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.265);
             color: #fff;
             height: 50px;
             width: 100%;
@@ -262,6 +269,13 @@
     <title>Mafia | Login & Registration</title>
 </head>
 <body>
+
+    <!-- video src -->
+    <video autoplay muted loop id="myVideo">
+        <source src="video/bgvideo.mp4" type="video/mp4">
+    </video>
+
+
  <div class="wrapper">
     <nav class="nav">
         <div class="nav-logo">
@@ -342,9 +356,9 @@
 
 <script>
     var audio = new Audio();
-    audio.src='click.mp3';
+    audio.src='audio/click.mp3';
     var error = new Audio();
-    error.src = 'error.mp3';
+    error.src = 'audio/error.mp3';
 </script>
 
 </body>

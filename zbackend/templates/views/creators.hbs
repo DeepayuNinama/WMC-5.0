@@ -35,6 +35,13 @@
 
         }
 
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;  
+            z-index: -100;
+        }
+
         .nav{
             position: absolute;
             top: 0;
@@ -142,7 +149,7 @@
             width: 400px;
             height: 240px;
             margin:70px;
-            background: rgba(39, 39, 39, 0.863);
+            background: rgba(72, 72, 72, 0.788);
             border-radius: 9px;
             box-shadow: 0 35px 80px rgba(0,0,0, .5);
             transition: all .5s ease;
@@ -281,6 +288,10 @@
 
 </head>
 <body>
+    <!-- video src -->
+    <video autoplay muted loop id="myVideo">
+        <source src="video/bgvideo.mp4" type="video/mp4">
+    </video>
 
     <header class="nav">
         <div class="nav-logo">
@@ -369,9 +380,9 @@
 
     <script>
         var audio = new Audio();
-        audio.src='click.mp3';
+        audio.src='audio/click.mp3';
         var error = new Audio();
-        error.src = 'error.mp3';
+        error.src = 'audio/error.mp3';
     </script>
 </body>
 </html>
