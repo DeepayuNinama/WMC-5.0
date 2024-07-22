@@ -383,175 +383,25 @@
     </header>
     
     <section class="shop container">
-
-        <!-- Title -->
-
-
         <h2 class="section-title">GTA 5 - CAR COLLECTION</h2>
-
         <div class="search">
             <i class="bx bx-search" id="cart-icon"></i>
             <input type="text" name="" id="search-item" placeholder="Search Model" onkeyup="search()">
         </div>
-            
-
-        <!-- Content -->
-         <div class="shop-content" id="shop-content">
-
-            
-            <!-- Product Box: 1 -->
-             <div class="product-box">
-                <img src="../image/1.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXeT 2</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$2500.00</span>
+        <div class="shop-content" id="shop-content">
+            {{#each products}}
+            <div class="product-box">
+                <img src="{{this.imageurl}}" alt="{{this.title}}" class="product-img">
+                <h2 class="product-title">{{this.title}}</h2>
+                <h3 class="product-desc">{{this.description}}</h3>
+                <h3 class="product-type">Type: {{this.type}}</h3>
+                <span class="price">${{this.price}}</span>
                 <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 2 -->
-             <div class="product-box">
-                <img src="../image/2.jpg" alt="" class="product-img">
-                <h2 class="product-title">Tblabla</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 3 -->
-             <div class="product-box">
-                <img src="../image/3.jpg" alt="" class="product-img">
-                <h2 class="product-title">haha 1haha 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 4 -->
-             <div class="product-box">
-                <img src="../image/4.jpg" alt="" class="product-img">
-                <h2 class="product-title">haha 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 5 -->
-             <div class="product-box">
-                <img src="../image/5.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 6 -->
-             <div class="product-box">
-                <img src="../image/6.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">newme</h3>
-                <h3 class="product-desc">thistoo</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 7 -->
-             <div class="product-box">
-                <img src="../image/7.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 8 -->
-             <div class="product-box">
-                <img src="../image/8.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 9 -->
-             <div class="product-box">
-                <img src="../image/9.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 10 -->
-             <div class="product-box">
-                <img src="../image/10.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 11 -->
-             <div class="product-box">
-                <img src="../image/11.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 12 -->
-             <div class="product-box">
-                <img src="../image/12.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 13 -->
-             <div class="product-box">
-                <img src="../image/13.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 14 -->
-
-             <div class="product-box">
-                <img src="../image/14.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-             <!-- Product Box: 15 -->
-             <div class="product-box">
-                <img src="../image/15.jpg" alt="" class="product-img">
-                <h2 class="product-title">TEXT 1</h2>
-                <h3 class="product-desc">manufucturer: name</h3>
-                <h3 class="product-desc">Type: name</h3>
-                <span class="price">$25000.00</span>
-                <i class="bx bx-shopping-bag add-cart"></i>
-             </div>
-
-         </div>
+            </div>
+            {{/each}}
+        </div>
     </section>
+
     <script>
         let cartIcon = document.querySelector("#cart-icon");
         let cart = document.querySelector(".cart");

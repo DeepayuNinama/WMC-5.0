@@ -5,6 +5,9 @@ const bcrypt = require("bcryptjs");
 
 require("./db/conn");
 const Register = require("./models/registers");
+
+const Product = require("./models/products");
+
 const { json } = require("express");
 const port = process.env.PORT || 3000;
 
@@ -90,9 +93,18 @@ app.get("/about", (req, res) =>{ // About Page
     res.render("about");
 })
 
-app.get("/dashboard", (req, res) =>{ // Dashboard Page
-    res.render("dashboard");
-})
+// app.get("/dashboard", (req, res) =>{ // Dashboard Page
+//     res.render("dashboard");
+// })
+
+app.get("/dashboard", async (req, res) => {
+    try {
+        const products = await Product.find({});
+        res.render("dashboard", { products });
+    } catch (error) {
+        res.status(500).send("Error retrieving products");
+    }
+});
 
 
 app.listen(port, () => {
