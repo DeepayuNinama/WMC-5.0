@@ -41,7 +41,7 @@ app.post("/login", async(req, res) =>{ // Services-Login Page // POST
         const isMatch = await bcrypt.compare(password, useremail.password);
 
         if(isMatch){
-            res.status(201).render("dashboard");
+            res.redirect("/dashboard");
         }
         else{
             res.send("Password does not Match");
@@ -72,7 +72,7 @@ app.post("/register", async(req, res) =>{ // Creating New user in DB
 
             // Password Hash
             const registered = await registerUser.save();
-            res.status(201).render("dashboard");
+            res.redirect("dashboard");
         }
         else{
             res.send("Password are not matching")
