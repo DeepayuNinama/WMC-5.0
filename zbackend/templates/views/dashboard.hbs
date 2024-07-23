@@ -300,6 +300,17 @@
             background: hsl(249, 32%, 17%);
         }
 
+
+        /* Search by Filter */
+
+        .CategoryList label{
+
+            display: block; /* makes list in row*/
+            padding: 4px 0;
+        }
+
+        /* Media */
+
         @media (max-width:1080px){
             .nav {
                 padding:15px;
@@ -384,10 +395,22 @@
     
     <section class="shop container">
         <h2 class="section-title">GTA 5 - CAR COLLECTION</h2>
+
+        {{!-- Search Box --}}
         <div class="search">
             <i class="bx bx-search" id="cart-icon"></i>
             <input type="text" name="" id="search-item" placeholder="Search Model" onkeyup="search()">
         </div>
+
+        {{!-- List --}}
+        <div class="filterbox">
+            <h2>Category</h2>
+            <div class="CategoryList">
+            </div>
+
+        </div>
+
+
         <div class="shop-content" id="shop-content">
             {{#each products}}
             <div class="product-box">
@@ -418,7 +441,6 @@
         }
 
         // Cart Working
-
         if (document.readyState == 'loading'){
             document.addEventListener("DOMContentLoaded", ready);
         }   
@@ -548,36 +570,35 @@
 
         // Search Function
 
-        const search = () =>{
-            // fetching user input 
-            const searchbox = document.getElementById("search-item").value.toUpperCase();
-            const storeitems = document.getElementById("shop-content")
-            const product = document.querySelectorAll(".product-box")
-            
-            const pname = document.getElementsByTagName("h2") // Product name
-            const dname = document.getElementsByTagName("h3") // Product Desc
-
-            for (var i = 0; i < pname.length; i++){
-                let matchp = product[i].getElementsByTagName('h2')[0];
-                let matchd = product[i].getElementsByTagName('h3')[0];
-
-                if(matchp || matchd){
-                    let textvalue = matchp.textContent || matchp.innerHTML 
-                    let descvalue = matchd.textContent || matchd.innerHTML
-
-                    if(textvalue.toUpperCase().indexOf(searchbox) > -1){
-                        product[i].style.display = "";
-                    }
-
-                    else if(descvalue.toUpperCase().indexOf(searchbox) > -1){
-                        product[i].style.display = "";
-                    }
-                    else{
-                        product[i].style.display = "none";
-                    }
-                }
+    function populateCategories() {
+        // Step 1: Get all product-type elements
+        const productTypes = document.querySelectorAll('.product-type');
+        
+        // Step 2: Create a set to store unique categories without the "Type: " prefix
+        const categories = new Set();
+        
+        productTypes.forEach(typeElement => {
+            const categoryText = typeElement.innerText.replace("Type: ", "").trim();
+            // Exclude the "Mens" category
+            if (categoryText !== "Mens") {
+                categories.add(categoryText);
             }
-        }
+        });
+
+        // Step 3: Get the CategoryList div
+        const categoryListDiv = document.querySelector('.CategoryList');
+
+        // Step 4: Create and append label elements for each category
+        categories.forEach(category => {
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="checkbox" name="category" value="${category}"> ${category}`;
+            categoryListDiv.appendChild(label);
+        });
+    }
+
+    // Call the function to populate categories
+    document.addEventListener('DOMContentLoaded', populateCategories);
+
 
     </script>
 </body>
