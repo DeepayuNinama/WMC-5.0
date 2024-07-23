@@ -346,6 +346,77 @@
                 width: 280px;
             }
         }
+
+
+/* Price Filter Container */
+.price-filter {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: var(--bg-color); /* Matches the background color */
+    border: 1px solid var(--text-color);
+    border-radius: 2px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+/* Label for Price Filter */
+.price-filter label {
+    display: block;
+    font-size: 1rem; /* Reduced font size */
+    font-weight: 500; /* Slightly lighter weight */
+    margin-bottom: 6px;
+    color: var(--text-color);
+}
+
+/* Slider */
+#priceRange {
+    width: 100%;
+    -webkit-appearance: none; /* Remove default styling */
+    background: var(--main-color);
+    height: 5px; /* Reduced height */
+    border-radius: 4px; /* Reduced border radius */
+    outline: none;
+    margin-bottom: 8px;
+}
+
+#priceRange::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none;
+    width: 12px; /* Reduced thumb width */
+    height: 12px; /* Reduced thumb height */
+    background: var(--text-color);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#priceRange::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--text-color);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Number Input Field */
+#priceValue {
+    width: 100%;
+    padding: 6px; /* Reduced padding */
+    border: 1px solid var(--text-color);
+    border-radius: 4px; /* Reduced border radius */
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem; /* Reduced font size */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+/* Adjust the number input to match slider */
+.price-filter input[type="number"] {
+    width: 100%;
+    margin-top: 4px; /* Reduced margin-top */
+    box-sizing: border-box;
+}
+
      </style>
 
     <!-- Font -->
@@ -381,8 +452,23 @@
                 <input type="text" id="search-item" placeholder="Search Model" onkeyup="search()">
             </div>
 
-            {{!-- List --}}
-            <div class="filterbox">
+            <div class="price-filter">
+                <label for="priceRange">Budget:</label>
+                <input type="range" id="priceRange" min="0" step="0.01">
+                <input type="number" id="priceValue" step="0.01" min="0">
+            </div>
+
+
+                <div id="filter-container">
+                    <label for="sort-price">Sort by Price:</label>
+                    <select id="sort-price">
+                        <option value="default">Select an option</option>
+                        <option value="low-to-high">Low to High</option>
+                        <option value="high-to-low">High to Low</option>
+                    </select>
+                </div>
+
+                <div class="filterbox">
                 <div class="dropdown">
                     <button class="dropbtn"><i class='bx bxs-filter-alt' style='color:#ffffff'  ></i>  Apply Filter</button>
                     <div class="dropdown-content CategoryList">
@@ -591,6 +677,127 @@
                 }
             });
         }
+
+        // _______________________________________NEW________________________________________________
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+
+            // Function to get the maximum price from the products
+            function getMaxPrice() {
+                const priceElements = document.querySelectorAll('.price');
+                let maxPrice = 0;
+                
+                priceElements.forEach(priceElement => {
+                    const price = parseFloat(priceElement.textContent.replace('$', ''));
+                    if (price > maxPrice) {
+                        maxPrice = price;
+                    }
+                });
+                
+                return maxPrice;
+            }
+
+            // Set the maximum value of the slider and initialize the display
+            const maxPrice = getMaxPrice();
+            priceRange.max = maxPrice;
+            priceRange.value = maxPrice;
+            priceValue.value = maxPrice; // Initialize with max price
+
+            // Event listener for slider input
+            priceRange.addEventListener('input', () => {
+                priceValue.value = priceRange.value;
+                filterProductsByPrice(priceRange.value);
+            });
+
+            // Event listener for manual input field
+            priceValue.addEventListener('input', () => {
+                let inputValue = parseFloat(priceValue.value);
+                // Ensure that the input value does not exceed the max price
+                if (isNaN(inputValue) || inputValue < 0) {
+                    inputValue = 0;
+                } else if (inputValue > priceRange.max) {
+                    inputValue = priceRange.max;
+                }
+                // Update the slider position
+                priceRange.value = inputValue;
+                priceValue.value = inputValue;
+                filterProductsByPrice(inputValue);
+            });
+
+            // Function to filter products by price
+            function filterProductsByPrice(maxPrice) {
+                const products = document.querySelectorAll('.product-box');
+                products.forEach(product => {
+                    const priceElement = product.querySelector('.price');
+                    const price = parseFloat(priceElement.textContent.replace('$', ''));
+                    if (price <= maxPrice) {
+                        product.style.display = '';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+    setupSortByPrice();
+});
+
+function setupSortByPrice() {
+    const sortDropdown = document.getElementById('sort-price');
+    if (sortDropdown) {
+        sortDropdown.addEventListener('change', function() {
+            const sortValue = this.value;
+            sortProducts(sortValue);
+        });
+    } else {
+        console.error('Sort dropdown element not found.');
+    }
+}
+
+function sortProducts(order) {
+    const shopContent = document.getElementById('shop-content');
+    if (!shopContent) {
+        console.error('Shop content container not found.');
+        return;
+    }
+
+    const products = Array.from(shopContent.getElementsByClassName('product-box'));
+
+    if (products.length === 0) {
+        console.warn('No products found to sort.');
+        return;
+    }
+
+    products.sort((a, b) => {
+        const priceA = parseFloat(a.querySelector('.price')?.innerText.replace('$', ''));
+        const priceB = parseFloat(b.querySelector('.price')?.innerText.replace('$', ''));
+
+        if (isNaN(priceA) || isNaN(priceB)) {
+            console.error('Price parsing error.');
+            return 0; // Default if price parsing fails
+        }
+
+        if (order === 'low-to-high') {
+            return priceA - priceB;
+        } else if (order === 'high-to-low') {
+            return priceB - priceA;
+        } else {
+            console.warn('Invalid sort order.');
+            return 0; // Default if order is invalid
+        }
+    });
+
+    // Reorder products in shop content
+    products.forEach(product => shopContent.appendChild(product));
+}
+
+
 
     </script>
 </body>
