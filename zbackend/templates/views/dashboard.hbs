@@ -17,8 +17,17 @@
             box-sizing: border-box;
             list-style: none;
             text-decoration: none;
-            color:var(--text-color);
+    
+            cursor: url(../image/cursor.png), auto;
         }
+
+        body{
+            background-color: #f1f1f1;
+        }
+        h2{
+            color: #171427;
+        }
+        
 
         :root{
             --main-color: #131924;
@@ -93,7 +102,12 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-top: 1rem;
-            color: var(--text-color);
+            color: var(--main-color);
+        }
+
+        .cart-content{
+            color: var(--main-color);
+            width: 800;
         }
         .cart-box{
             display: grid;
@@ -124,6 +138,7 @@
         }
         .cart-product-title{
             font-size: 1rem;
+            font-weight: 600;
             text-transform: uppercase;
         }
         .detail-box{
@@ -139,9 +154,11 @@
         .total-title{
             font-size: 1rem;
             font-weight: 600;
+            color: var(--main-color);
         }
         .total-price{
             margin-left: .5rem;
+            color: var(--main-color);
         }
         .btn-buy{
             display: flex;
@@ -174,7 +191,7 @@
         .search{
             display: flex;
             align-items: center;
-            width: 250px;
+            width: 300px;
             height: 40px;
             background-color: #131924;
             border-radius: 2px;
@@ -209,14 +226,16 @@
             grid-template-columns: repeat(auto-fit, minmax(300px,auto));
             gap: 1.5rem;
             margin-bottom: 45px;
+            
         }
         .product-box{
             position: relative;
+            border-radius: 4px;
         }
         .product-box:hover{
-            padding: 10px;
-            border: 1px solid var(--text-color);
-            transition: 0.7s ease;
+            padding: 5px;
+            /* border: 1px solid var(--text-color); */
+            transition: 0.4s ease;
         }
         .product-title{
             font-size: 1.1rem;
@@ -233,6 +252,7 @@
         }
         .price{
             font-weight: 500;
+            color: var(--main-color);
         }
         .add-cart{
             position: absolute;
@@ -246,13 +266,23 @@
             background: hsl(249, 32%, 17%);
         }
 
+        .desc_cont{
+            color: #686868;
+            text-align:justify;
+            word-break:keep-all;
+        }
+
+        .borderline{
+            margin-top: 20px;
+            width: 100%;
+            border: 1px solid #949494;
+        }
 
 
         .CategoryList label{
             display: block;
             padding: 4px 0;
         }
-
 
         /* Filter feature */
         .dropdown {
@@ -269,6 +299,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: .5em;
+
         }
 
         .dropdown-content label {
@@ -298,14 +329,15 @@
             padding: 10px;
             font-size: 14px;
             border: none;
-            cursor: pointer;
             border-radius: 2px; 
             margin-bottom: 20px;
+            cursor: url(../image/cursor.png), auto;
         }
 
         .searchContainer{
             display: flex;
             justify-content: space-between;
+            
         }
 
 
@@ -347,37 +379,48 @@
             }
         }
 
+        .imagecontent{
+            display: flex;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
 
+
+
+ 
 /* Price Filter Container */
 .price-filter {
     display: flex;
     align-items: center;
+    height: 40px;
     padding: 8px;
-    background: var(--bg-color); /* Matches the background color */
+    background: #131924; /* Matches the background color */
     border: 1px solid var(--text-color);
     border-radius: 2px;
-    margin-top: -15px;
     margin-bottom: 20px;
+    width: 300px;
 }
 
 /* Label for Price Filter */
 .price-filter label {
     display: block;
+    padding-top: 5px;
     font-size: 1rem; /* Reduced font size */
-    font-weight: 500; /* Slightly lighter weight */
+    font-weight: 400; /* Slightly lighter weight */
     margin-bottom: 6px;
-    color: var(--text-color);
+    color: var(--bg-color);
 }
 
 /* Slider */
 #priceRange {
-    width: 100%;
+    width: 50%;
     -webkit-appearance: none; /* Remove default styling */
-    background: var(--main-color);
+    background: var(--bg-color);
     height: 5px; /* Reduced height */
     border-radius: 4px; /* Reduced border radius */
     outline: none;
-    margin-bottom: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #priceRange::-webkit-slider-thumb {
@@ -385,38 +428,64 @@
     appearance: none;
     width: 12px; /* Reduced thumb width */
     height: 12px; /* Reduced thumb height */
-    background: var(--text-color);
+    background: #7499d8;
     cursor: pointer;
     border-radius: 50%;
 }
 
 #priceRange::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     background: var(--text-color);
     cursor: pointer;
     border-radius: 50%;
 }
 
+
+
 /* Number Input Field */
 #priceValue {
-    width: 100%;
-    padding: 6px; /* Reduced padding */
-    border: 1px solid var(--text-color);
-    border-radius: 4px; /* Reduced border radius */
-    background: var(--bg-color);
-    color: var(--text-color);
-    font-size: 0.9rem; /* Reduced font size */
-    box-sizing: border-box; /* Ensure padding is included in width */
+    width: 50%;
+    border-radius: 5px;
+    padding: 3px; /* Reduced padding */ /* Reduced border radius */
+    color: var(--main-color);
+    font-size: 0.7rem; /* Reduced font size */
+    box-sizing: border-box;
+    align-items: center; 
+    background-color: #f1f1f1;
+    /* Ensure padding is included in width */
 }
 
 /* Adjust the number input to match slider */
 .price-filter input[type="number"] {
     width: 100%;
-    margin-top: 4px; /* Reduced margin-top */
     box-sizing: border-box;
 }
 
+
+        #filter-container{
+            background: #171427;
+            height: 40px;
+            border-radius: 2px;
+            padding-top: 6px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .sort-price{
+            color: #FFF;
+        }
+
+        #sort-price{
+                border-radius: 5px;
+                padding: 3px;
+                color: var(--main-color);
+                font-size: 0.7rem;
+                box-sizing: border-box;
+                align-items: center; 
+                background-color: #f1f1f1;
+        }
+        
      </style>
 
     <!-- Font -->
@@ -443,7 +512,21 @@
     </header>
     
     <section class="shop container">
-        <h2 class="section-title">GTA 5 - CAR COLLECTION</h2>
+        
+        <h2 class="section-title">GTA 5 | Exclusive Collection</h2>
+        <p class="desc_cont">Welcome to your ultimate black-market paradise, inspired by the gritty streets of Los Santos. 
+            Step into our immersive dashboard and experience the thrill of the underworld with our 
+            exclusive selection of luxury cars, prime real estate, high-end bikes, and state-of-the-art 
+            weaponry. Our marketplace offers everything you need to dominate the city, just like in GTA 5. 
+            Navigate through our dark-themed interface, designed to give you the authentic feel of the game. Want to sell your luxury? <a href=""></a> <br>
+            <div class="borderline"></div>
+            <br><br>
+        </p>
+        {{!-- <div class="imagecontent">
+            <img src="image/f3.jpg" alt="">
+            <img src="image/f4.jpg" alt="">
+        </div> --}}
+        
 
         <div class="searchContainer">
         {{!-- Search Box --}}
@@ -453,16 +536,16 @@
             </div>
 
             <div class="price-filter">
-                <label for="priceRange">Budget:</label>
+                <label for="priceRange" class="price-budget">Budget</label>
                 <input type="range" id="priceRange" min="0" step="0.01">
                 <input type="number" id="priceValue" step="0.01" min="0">
             </div>
 
 
                 <div id="filter-container">
-                    <label for="sort-price">Sort by Price:</label>
+                    <label for="sort-price" class="sort-price">Sort by Price:</label>
                     <select id="sort-price">
-                        <option value="default">Select an option</option>
+                        <option value="default">None</option>
                         <option value="low-to-high">Low to High</option>
                         <option value="high-to-low">High to Low</option>
                     </select>
