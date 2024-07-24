@@ -105,6 +105,11 @@ app.get("/dashboard", async (req, res) => {
 });
 
 
+app.get("/sell", (req, res) =>{ // sell Page
+    res.render("sell");
+})
+
+
 app.listen(port, () => {
     console.log(`server is running at Port no. ${port}`)
 })

@@ -273,9 +273,16 @@
         }
 
         .borderline{
-            margin-top: 20px;
+         
             width: 100%;
             border: 1px solid #949494;
+        }
+
+        .sell_btn{
+            color: #515151;
+            text-align:justify;
+            word-break:keep-all;
+            font-weight: 600;
         }
 
 
@@ -331,6 +338,10 @@
             border: none;
             border-radius: 2px; 
             margin-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            font-weight: 600;
             cursor: url(../image/cursor.png), auto;
         }
 
@@ -386,82 +397,80 @@
         }
 
 
-
- 
-/* Price Filter Container */
-.price-filter {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    padding: 8px;
-    background: #131924; /* Matches the background color */
-    border: 1px solid var(--text-color);
-    border-radius: 2px;
-    margin-bottom: 20px;
-    width: 300px;
-}
-
-/* Label for Price Filter */
-.price-filter label {
-    display: block;
-    padding-top: 5px;
-    font-size: 1rem; /* Reduced font size */
-    font-weight: 400; /* Slightly lighter weight */
-    margin-bottom: 6px;
-    color: var(--bg-color);
-}
-
-/* Slider */
-#priceRange {
-    width: 50%;
-    -webkit-appearance: none; /* Remove default styling */
-    background: var(--bg-color);
-    height: 5px; /* Reduced height */
-    border-radius: 4px; /* Reduced border radius */
-    outline: none;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-#priceRange::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Remove default styling */
-    appearance: none;
-    width: 12px; /* Reduced thumb width */
-    height: 12px; /* Reduced thumb height */
-    background: #7499d8;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-#priceRange::-moz-range-thumb {
-    width: 10px;
-    height: 10px;
-    background: var(--text-color);
-    cursor: pointer;
-    border-radius: 50%;
-}
+        .price-filter {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            padding: 8px;
+            background: #131924; /* Matches the background color */
+            border: 1px solid var(--text-color);
+            border-radius: 2px;
+            margin-bottom: 20px;
+            width: 300px;
+        }
 
 
+        .price-filter label {
+            display: block;
+            padding-top: 5px;
+            font-size: 0.9rem; /* Reduced font size */
+            font-weight: 500; /* Slightly lighter weight */
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            color: var(--bg-color);
+        }
 
-/* Number Input Field */
-#priceValue {
-    width: 50%;
-    border-radius: 5px;
-    padding: 3px; /* Reduced padding */ /* Reduced border radius */
-    color: var(--main-color);
-    font-size: 0.7rem; /* Reduced font size */
-    box-sizing: border-box;
-    align-items: center; 
-    background-color: #f1f1f1;
-    /* Ensure padding is included in width */
-}
 
-/* Adjust the number input to match slider */
-.price-filter input[type="number"] {
-    width: 100%;
-    box-sizing: border-box;
-}
+        #priceRange {
+            width: 50%;
+            -webkit-appearance: none; /* Remove default styling */
+            background: var(--bg-color);
+            height: 5px; /* Reduced height */
+            border-radius: 4px; /* Reduced border radius */
+            outline: none;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
 
+        #priceRange::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Remove default styling */
+            appearance: none;
+            width: 12px; /* Reduced thumb width */
+            height: 12px; /* Reduced thumb height */
+            background: #7499d8;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #priceRange::-moz-range-thumb {
+            width: 10px;
+            height: 10px;
+            background: var(--text-color);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .bxs-filter-alt{
+            margin-left: 5px;
+            font-size: 1rem;
+            align-items: center;
+        }
+
+        #priceValue {
+            width: 50%;
+            border-radius: 5px;
+            padding: 3px;
+            color: var(--main-color);
+            font-size: 0.7rem; 
+            box-sizing: border-box;
+            align-items: center; 
+            background-color: #f1f1f1;
+
+        }
+
+        .price-filter input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
 
         #filter-container{
             background: #171427;
@@ -473,7 +482,12 @@
         }
 
         .sort-price{
-            color: #FFF;
+            color: #ffffff;
+            font-size: .9rem;
+            font-weight: 600;
+            margin-right: 5px;
+            background: #131924;
+
         }
 
         #sort-price{
@@ -485,7 +499,6 @@
                 align-items: center; 
                 background-color: #f1f1f1;
         }
-        
      </style>
 
     <!-- Font -->
@@ -496,7 +509,7 @@
     <!-- Header -->
     <header>
         <div class="nav container">
-            <a href="./login" class="logo">Mafia</a>
+            <a href="./login" class="logo" onmousedown="audio.play();">Mafia</a>
             <i class="bx bx-shopping-bag" id="cart-icon"></i>
             <div class="cart">
                 <h2 class="cart-title">Your Cart</h2>
@@ -518,16 +531,12 @@
             Step into our immersive dashboard and experience the thrill of the underworld with our 
             exclusive selection of luxury cars, prime real estate, high-end bikes, and state-of-the-art 
             weaponry. Our marketplace offers everything you need to dominate the city, just like in GTA 5. 
-            Navigate through our dark-themed interface, designed to give you the authentic feel of the game. Want to sell your luxury? <a href=""></a> <br>
+            Navigate through our dark-themed interface, designed to give you the authentic feel of the game, and secure your place among the elite with our premium offerings. 
+            <p class="sell_btn">Want to sell your luxury? <a href="sell">Click Here <i class='bx bx-link-external'></i></a></p><br>
             <div class="borderline"></div>
             <br><br>
         </p>
-        {{!-- <div class="imagecontent">
-            <img src="image/f3.jpg" alt="">
-            <img src="image/f4.jpg" alt="">
-        </div> --}}
         
-
         <div class="searchContainer">
         {{!-- Search Box --}}
             <div class="search">
@@ -543,9 +552,9 @@
 
 
                 <div id="filter-container">
-                    <label for="sort-price" class="sort-price">Sort by Price:</label>
+                    <label for="sort-price" class="sort-price">SORT</label>
                     <select id="sort-price">
-                        <option value="default">None</option>
+                        <option value="default">Sort By Price</option>
                         <option value="low-to-high">Low to High</option>
                         <option value="high-to-low">High to Low</option>
                     </select>
@@ -553,7 +562,7 @@
 
                 <div class="filterbox">
                 <div class="dropdown">
-                    <button class="dropbtn"><i class='bx bxs-filter-alt' style='color:#ffffff'  ></i>  Apply Filter</button>
+                    <button class="dropbtn">APPLY FILTER<i class='bx bxs-filter-alt' style='color:#ffffff'></i></button>
                     <div class="dropdown-content CategoryList">
                         <!-- The category list items will be dynamically populated by JavaScript -->
                     </div>
@@ -671,7 +680,7 @@
                     <div class="cart-price">${price}</div>
                     <input type="number" value="1" class="cart-quantity">
                 </div>
-                <i class="bx bxs-trash-alt cart-remove"></i>`;
+                <i class="bx bxs-trash-alt cart-remove" ></i>`;
 
             cartShopBox.innerHTML = cartBoxContent;
             cartItems.append(cartShopBox);
@@ -828,58 +837,62 @@
 
 
         document.addEventListener('DOMContentLoaded', function() {
-    setupSortByPrice();
-});
-
-function setupSortByPrice() {
-    const sortDropdown = document.getElementById('sort-price');
-    if (sortDropdown) {
-        sortDropdown.addEventListener('change', function() {
-            const sortValue = this.value;
-            sortProducts(sortValue);
+            setupSortByPrice();
         });
-    } else {
-        console.error('Sort dropdown element not found.');
-    }
-}
 
-function sortProducts(order) {
-    const shopContent = document.getElementById('shop-content');
-    if (!shopContent) {
-        console.error('Shop content container not found.');
-        return;
-    }
-
-    const products = Array.from(shopContent.getElementsByClassName('product-box'));
-
-    if (products.length === 0) {
-        console.warn('No products found to sort.');
-        return;
-    }
-
-    products.sort((a, b) => {
-        const priceA = parseFloat(a.querySelector('.price')?.innerText.replace('$', ''));
-        const priceB = parseFloat(b.querySelector('.price')?.innerText.replace('$', ''));
-
-        if (isNaN(priceA) || isNaN(priceB)) {
-            console.error('Price parsing error.');
-            return 0; // Default if price parsing fails
+        function setupSortByPrice() {
+            const sortDropdown = document.getElementById('sort-price');
+            if (sortDropdown) {
+                sortDropdown.addEventListener('change', function() {
+                    const sortValue = this.value;
+                    sortProducts(sortValue);
+                });
+            } else {
+                console.error('Sort dropdown element not found.');
+            }
         }
 
-        if (order === 'low-to-high') {
-            return priceA - priceB;
-        } else if (order === 'high-to-low') {
-            return priceB - priceA;
-        } else {
-            console.warn('Invalid sort order.');
-            return 0; // Default if order is invalid
+        function sortProducts(order) {
+            const shopContent = document.getElementById('shop-content');
+            if (!shopContent) {
+                console.error('Shop content container not found.');
+                return;
+            }
+
+            const products = Array.from(shopContent.getElementsByClassName('product-box'));
+
+            if (products.length === 0) {
+                console.warn('No products found to sort.');
+                return;
+            }
+
+            products.sort((a, b) => {
+                const priceA = parseFloat(a.querySelector('.price')?.innerText.replace('$', ''));
+                const priceB = parseFloat(b.querySelector('.price')?.innerText.replace('$', ''));
+
+                if (isNaN(priceA) || isNaN(priceB)) {
+                    console.error('Price parsing error.');
+                    return 0; // Default if price parsing fails
+                }
+
+                if (order === 'low-to-high') {
+                    return priceA - priceB;
+                } else if (order === 'high-to-low') {
+                    return priceB - priceA;
+                } else {
+                    console.warn('Invalid sort order.');
+                    return 0; // Default if order is invalid
+                }
+            });
+
+            // Reorder products in shop content
+            products.forEach(product => shopContent.appendChild(product));
         }
-    });
 
-    // Reorder products in shop content
-    products.forEach(product => shopContent.appendChild(product));
-}
-
+        var audio = new Audio();
+        audio.src='audio/click.mp3';
+        var error = new Audio();
+        error.src = 'audio/error.mp3';
 
 
     </script>
