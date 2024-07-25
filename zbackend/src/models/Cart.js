@@ -15,7 +15,7 @@ const cartItemSchema = new mongoose.Schema({
 
 // Define the schema for the cart
 const cartSchema = new mongoose.Schema({
-    items: [cartItemSchema] /
+    items: [cartItemSchema] 
 });
 
 const Cart = mongoose.model("Cart", cartSchema);

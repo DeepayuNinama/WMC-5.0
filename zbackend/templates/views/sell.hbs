@@ -390,7 +390,6 @@ body{
 </style>
 </head>
 <body>
-
     <!-- Video Background -->
     <video autoplay muted loop id="myVideo">
         <source src="video/bgvideo.mp4" type="video/mp4">
@@ -413,7 +412,7 @@ body{
 
     <div class="container">
         <h2>List Your Product</h2>
-
+        <form action="/sell" method="POST" enctype="multipart/form-data">
         <div class="two-forms">
             <div class="input-box">
                 <input type="date" class="input-field" placeholder="date" name="date">
@@ -421,17 +420,14 @@ body{
             </div>
             <div class="input-box">
                 <!-- submit btn -->
-                <button class="input-submit-box"> SUBMIT</button>
+                <button class="input-submit-box">SUBMIT</button>
             </div>
         </div>
 
-        <!-- Try -->
-
         <div class="radio-tile-group">
-            
             <h4>Select <br>Category</h4>
             <div class="input-container">
-              <input id="walk" type="radio" name="radio">
+              <input id="walk" type="radio" name="type" value="Car">
               <div class="radio-tile">
                 <ion-icon name="car-sport"></ion-icon>
                 <label for="walk">Car</label>
@@ -439,7 +435,7 @@ body{
             </div>
     
             <div class="input-container">
-              <input id="bike" type="radio" name="radio">
+              <input id="bike" type="radio" name="type" value="Bike">
               <div class="radio-tile">
                 <ion-icon name="bicycle"></ion-icon>
                 <label for="bike">Bike</label>
@@ -447,7 +443,7 @@ body{
             </div>
     
             <div class="input-container">
-              <input id="car" type="radio" name="radio">
+              <input id="car" type="radio" name="type" value="Weapon">
               <div class="radio-tile">
                 <ion-icon name="hammer"></ion-icon>
                 <label for="car">Weapon</label>
@@ -455,7 +451,7 @@ body{
             </div>
     
             <div class="input-container">
-              <input id="fly" type="radio" name="radio">
+              <input id="fly" type="radio" name="type" value="Aircraft">
               <div class="radio-tile">
                 <ion-icon name="airplane"></ion-icon>
                 <label for="fly">Aircraft</label>
@@ -463,7 +459,7 @@ body{
             </div>
 
             <div class="input-container">
-                <input id="fly" type="radio" name="radio">
+                <input id="fly" type="radio" name="type" value="Penthouse">
                 <div class="radio-tile">
                     <ion-icon name="home"></ion-icon>
                   <label for="fly">Penthouse</label>
@@ -473,20 +469,18 @@ body{
 
         <div class="linebar"></div>
 
-        <!-- Try -->
         <div class="allContent">
-
             <div>
                 <div class="input-box">
-                    <input type="password" class="input-field" placeholder="product name" name="password">
+                    <input type="text" class="input-field" placeholder="product name" name="title">
                     <i class='bx bx-text' ></i>
                 </div>
                 <div class="input-box">
-                    <input type="number" class="input-field" placeholder="price" name="password">
+                    <input type="number" class="input-field" placeholder="price" name="price">
                     <i class='bx bx-money'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" class="input-field" placeholder="desciption" name="password">
+                    <input type="text" class="input-field" placeholder="description" name="description">
                     <i class='bx bx-rename' ></i>
                 </div>
             </div>
@@ -494,48 +488,47 @@ body{
             <div class="linebar2"></div>
 
             <div class="container1">
-                <input type="file" id="file" accept="image/*" hidden>
+                <input type="file" id="file" name="image" accept="image/*" hidden>
                 <div class="img-area" data-img="">
                     <i class='bx bxs-cloud-upload icon'></i>
                     <h3>Upload Image</h3>
                     <p>Image size must be less than <span>10MB</span></p>
                 </div>
-                <button class="select-image">Select Image</button>
+                <button type="button" class="select-image">Select Image</button>
             </div>
-
         </div>
 
-        
+        </form>
     </div>
 
     <script>
         const selectImage = document.querySelector('.select-image');
-            const inputFile = document.querySelector('#file');
-            const imgArea = document.querySelector('.img-area');
+        const inputFile = document.querySelector('#file');
+        const imgArea = document.querySelector('.img-area');
 
-            selectImage.addEventListener('click', function () {
-                inputFile.click();
-            })
+        selectImage.addEventListener('click', function () {
+            inputFile.click();
+        });
 
-            inputFile.addEventListener('change', function () {
-                const image = this.files[0]
-                if(image.size < 10000000) {
-                    const reader = new FileReader();
-                    reader.onload = ()=> {
-                        const allImg = imgArea.querySelectorAll('img');
-                        allImg.forEach(item=> item.remove());
-                        const imgUrl = reader.result;
-                        const img = document.createElement('img');
-                        img.src = imgUrl;
-                        imgArea.appendChild(img);
-                        imgArea.classList.add('active');
-                        imgArea.dataset.img = image.name;
-                    }
-                    reader.readAsDataURL(image);
-                } else {
-                    alert("Image size more than 10MB");
-                }
-            })
+        inputFile.addEventListener('change', function () {
+            const image = this.files[0];
+            if (image.size < 10000000) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const allImg = imgArea.querySelectorAll('img');
+                    allImg.forEach(item => item.remove());
+                    const imgUrl = reader.result;
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    imgArea.appendChild(img);
+                    imgArea.classList.add('active');
+                    imgArea.dataset.img = image.name;
+                };
+                reader.readAsDataURL(image);
+            } else {
+                alert("Image size more than 10MB");
+            }
+        });
     </script>
 </body>
 </html>

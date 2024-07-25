@@ -5,17 +5,15 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
+const hbs = require('hbs');
 
 const app = express();
 const mongoURL = "mongodb://127.0.0.1:27017/GTA5";
 const port = process.env.PORT || 3000;
 
-mongoose.connect(mongoURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log("Connected to DB"))
-  .catch(err => console.log(err));
+mongoose.connect(mongoURL)
+    .then(() => console.log("Connected to DB"))
+    .catch(err => console.log(err));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -66,8 +64,14 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-const static_path = path.join(__dirname, "../public");
+const partialsPath = path.join(__dirname, "../templates/views");
+hbs.registerPartials(partialsPath);
+
+const static_path = path.join(__dirname, "../public"); 
 const templates_path = path.join(__dirname, "../templates/views");
+
+// Serve static files
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(express.static(static_path));
 app.set("view engine", "hbs");

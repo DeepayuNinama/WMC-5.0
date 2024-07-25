@@ -20,7 +20,19 @@ const productSchema = new mongoose.Schema({
     imageurl: {
         type: String,
         required: true,
+    },
+    seller: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+    date: {
+        type: Date
+    },
+    adminApproved: {
+        type: Boolean,
+        default: false,
     }
+    
 });
 
 const Product = mongoose.model("Product", productSchema);
