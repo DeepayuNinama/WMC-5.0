@@ -193,7 +193,6 @@ exports.deleteFromCart = async (req, res) => {
         let itemFound = false;
 
         user.cart.items.forEach(item => {
-            console.log(`Product ID: ${item.productId._id}, Title: ${item.productId.title}, Quantity: ${item.quantity}`);
             if (item.productId._id.toString() === productId) {
                 itemFound = true;
             }
