@@ -1,115 +1,84 @@
 const express = require("express");
 const path = require("path");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/User");
+
 const app = express();
-const bcrypt = require("bcryptjs");
-
-require("./db/conn");
-const Register = require("./models/registers");
-
-const Product = require("./models/products");
-
-const { json } = require("express");
+const mongoURL = "mongodb://127.0.0.1:27017/GTA5";
 const port = process.env.PORT || 3000;
 
+mongoose.connect(mongoURL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log("Connected to DB"))
+  .catch(err => console.log(err));
 
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
-const static_path = path.join(__dirname, "../public" ); 
-const templates_path = path.join(__dirname, "../templates/views" ); 
+const sessionOptions = {
+  secret: "mysupersecretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+};
 
-app.use(express.static(static_path)); 
-app.set("view engine", "hbs"); 
+app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(
+  { usernameField: 'emailid' },
+  async (emailid, password, done) => {
+    try {
+      const user = await User.findOne({ emailid });
+      if (!user) {
+        return done(null, false, { message: 'Incorrect email.' });
+      }
+      const isMatch = await user.comparePassword(password);
+      if (!isMatch) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    } catch (err) {
+      return done(err);
+    }
+  }
+));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
+const static_path = path.join(__dirname, "../public");
+const templates_path = path.join(__dirname, "../templates/views");
+
+app.use(express.static(static_path));
+app.set("view engine", "hbs");
 app.set("views", templates_path);
 
-app.get("/", (req, res) =>{ // Landing Page
-    res.render("index")
-});
+const authRoutes = require("./routes/authRoute");
+const productRoutes = require("./routes/productRoute");
 
-app.get("/login", (req, res) =>{ // Services-Login Page // GET
-    res.render("login");
-})
-
-app.post("/login", async(req, res) =>{ // Services-Login Page // POST
-    
-    try {
-        const email = req.body.email;
-        const password = req.body.password;
-
-        const useremail = await Register.findOne({emailid:email});
-
-        const isMatch = await bcrypt.compare(password, useremail.password);
-
-        if(isMatch){
-            res.redirect("/dashboard");
-        }
-        else{
-            res.send("Password does not Match");
-        }
-    } 
-    catch (error) {
-        res.status(400).send("Login Failed");
-    }
-})
-
-app.get("/register", (req, res) =>{ // Services-Signup Page
-    res.render("register");
-})
-
-app.post("/register", async(req, res) =>{ // Creating New user in DB
-    try{
-        const password = req.body.password;
-        const cpassword = req.body.confirmpassword;
-
-        if(password===cpassword){
-            const registerUser = new Register({
-                firstname : req.body.firstname,
-                lastname : req.body.lastname,
-                emailid : req.body.emailid,
-                password : password,
-                confirmpassword : cpassword
-            })
-
-            // Password Hash
-            const registered = await registerUser.save();
-            res.redirect("dashboard");
-        }
-        else{
-            res.send("Password are not matching")
-        }
-    }
-        catch(error) {
-            res.status(400).send(error);
-        }   
-})
-
-app.get("/creators", (req, res) =>{ // Creators Page
-    res.render("creators");
-})
-
-app.get("/about", (req, res) =>{ // About Page
-    res.render("about");
-})
-
-// app.get("/dashboard", (req, res) =>{ // Dashboard Page
-//     res.render("dashboard");
-// })
-
-app.get("/dashboard", async (req, res) => {
-    try {
-        const products = await Product.find({});
-        res.render("dashboard", { products });
-    } catch (error) {
-        res.status(500).send("Error retrieving products");
-    }
-});
-
-
-app.get("/sell", (req, res) =>{ // sell Page
-    res.render("sell");
-})
-
+app.use("/", authRoutes);
+app.use("/", productRoutes);
 
 app.listen(port, () => {
-    console.log(`server is running at Port no. ${port}`)
-})
+  console.log(`Server is running at Port no. ${port}`);
+});
