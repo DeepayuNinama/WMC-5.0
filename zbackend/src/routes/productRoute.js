@@ -17,6 +17,11 @@ router.post("/cart/add", isAuthenticated, productController.addToCart);
 router.post("/cart/update", isAuthenticated, productController.updateCart);
 router.post("/cart/delete", isAuthenticated, productController.deleteFromCart);
 
+router.post('/pay', isAuthenticated, productController.pay);
+router.get('/payment/success', isAuthenticated, productController.paymentSuccess);
+router.get('/payment/cancel', isAuthenticated, productController.paymentCancel);
+
+
 
 
 module.exports = router;

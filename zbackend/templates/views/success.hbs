@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dff0d8;
+            color: #3c763d;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3c763d;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .home-link:hover {
+            background-color: #2d5a28;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Payment Successful!</div>
+        <div class="details">
+            <p>Thank you for your purchase.</p>
+            <p>Transaction ID: {{payment.id}}</p>
+            <p>Total: ${{payment.transactions.[0].amount.total}}</p>
+        </div>
+        <a href="/" class="home-link">Go to Home</a>
+    </div>
+</body>
+</html>

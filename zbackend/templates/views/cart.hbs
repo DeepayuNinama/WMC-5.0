@@ -31,5 +31,9 @@
         <form action="/cart/checkout" method="POST">
             <button type="submit">Checkout</button>
         </form>
+        <form action="/pay" method="post">
+            <input type="hidden" name="items" value="{{cart.items}}">
+            <button type="submit">Pay with PayPal</button>
+        </form>
     {{/if}}
 </div>

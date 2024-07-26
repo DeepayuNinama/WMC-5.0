@@ -6,6 +6,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const hbs = require('hbs');
+const paypal = require('paypal-rest-sdk');
+require('dotenv').config();
 
 const app = express();
 const mongoURL = "mongodb://127.0.0.1:27017/GTA5";
@@ -72,6 +74,12 @@ const templates_path = path.join(__dirname, "../templates/views");
 
 // Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+paypal.configure({
+  'mode': process.env.PAYPAL_MODE,
+  'client_id': process.env.PAYPAL_CLIENT_ID,
+  'client_secret': process.env.PAYPAL_CLIENT_SECRET
+});
 
 app.use(express.static(static_path));
 app.set("view engine", "hbs");
