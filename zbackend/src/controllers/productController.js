@@ -91,12 +91,9 @@ exports.getCart = async (req, res) => {
                 model: 'Product'
             }
         });
-
-        if (!user || !user.cart) {
-            return res.render("cart", { cart: { items: [] } });
-        }
-
-        res.render("cart", { cart: user.cart });
+        
+        const cart = user && user.cart ? user.cart : { items: [] };
+        res.render("cart", { cart, isEmpty: cart.items.length === 0 });
     } catch (error) {
         console.error(error); 
         res.status(500).send("Error retrieving cart");
@@ -130,7 +127,7 @@ exports.addToCart = async (req, res) => {
         await user.cart.save();
         await user.save();
 
-        res.render("cart", { cart: user.cart });
+        res.redirect("/dashboard");
     } catch (error) {
         console.error(error);
         res.status(500).send("Error adding item to cart");

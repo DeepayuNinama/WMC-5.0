@@ -608,7 +608,7 @@
         let closeCart = document.querySelector("#close-cart");
 
         cartIcon.onclick = () => {
-            fetch('/cart')
+            fetch('cart')
                 .then(response => response.text())
                 .then(data => {
                     cart.innerHTML = data;

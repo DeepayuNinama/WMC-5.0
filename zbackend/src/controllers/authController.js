@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Cart = require("../models/Cart");
 
 exports.index = (req, res) => {
     res.render("index");
@@ -13,7 +14,7 @@ exports.renderRegisterForm = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    res.redirect("/dashboard"); 
+    res.redirect("dashboard"); 
 };
 
 exports.register = async (req, res) => {
@@ -21,11 +22,16 @@ exports.register = async (req, res) => {
 
     if (password === confirmpassword) {
         try {
+
+            const cart = new Cart({ items: [] });
+            await cart.save();
+
             const registerUser = new User({
                 firstname,
                 lastname,
                 emailid,
-                password
+                password,
+                cart: cart._id
             });
 
             await registerUser.save();
