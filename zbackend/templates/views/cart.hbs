@@ -1,35 +1,127 @@
+<style>
+
+    .btn-buy{
+        display: flex;
+        margin: 1.5rem auto 0 auto;
+        padding: 12px 20px;
+        border: none;
+        background: var(--main-color);
+        color: var(--bg-color);
+        font-size: 1rem;
+        font-weight: 500;
+        transition: .4s ease;
+    }
+    .cart-stuff{
+        display: flex;
+    }
+    .detail-box{
+        color: #131924;
+    }
+
+    .cart-product-title{
+        
+    }
+
+    .classDesc{
+        margin-top: -20px;
+    }
+    .classPrice{
+        margin-top: -20px;
+    }
+
+    .classProd{
+        margin-top: 20px;
+    }
+
+    .jsrespo{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .delete-form{
+        justify-content: flex-end;
+    }
+
+    .qtyvalue{
+
+        width: 40px;
+        justify-content: center;
+    }
+    .qtybtn{
+        margin-left: 10px;
+    }
+
+    .cart-quantity{
+        padding: 10px;
+        display: flex;
+    }
+
+    .cart-remove{
+        background-color: #13192400;
+        border: none;
+    }
+    .notialert{
+        justify-content: center;
+        margin-top: 20px;
+        color: #131924;
+    }
+
+</style>
+
 <div id="cart-content">
+    <h2>Your Cart</h2>
     {{#if isEmpty}}
-        <p>Your cart is empty. </a></p>
+        <p class="notialert">Your cart is empty. </a></p>
     {{else}}
         <ul>
 
             {{#each cart.items}}
+                <div class="classProd">
                 <li>
-                    <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="product-img">
-                    <h2>{{this.productId.title}}</h2>
-                    <p>{{this.productId.description}}</p>
-                    <span>Price: ${{this.productId.price}}</span>
-                    <span>Quantity: {{this.quantity}}</span>
-                    
-                    <!-- Update Quantity Form -->
-                    <form action="/cart/update" method="POST" class="update-form">
-                        <input type="hidden" name="productId" value="{{this.productId._id}}">
-                        <input type="number" name="quantity" value="{{this.quantity}}" min="1">
-                        <button type="submit">Update</button>
-                    </form>
-                    
-                    <!-- Delete Item Form -->
-                    <form action="/cart/delete" method="POST" class="delete-form">
-                        <input type="hidden" name="productId" value="{{this.productId._id}}">
-                        <button type="submit">Remove</button>
-                    </form>
+                        <div class="cart-stuff">
+                            <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="cart-img">
+
+                            <div class="detail-box">
+                                <h2 class="cart-product-title">{{this.productId.title}}</h2>
+                                <p class="classDesc">{{this.productId.description}}</p>
+                                <span class="classPrice">Price: ${{this.productId.price}}</span>
+                                {{!-- <span class="cart-quantity">Quantity: {{this.quantity}}</span> --}}
+                            </div>
+                        </div>
+
+
+                        <div class="jsrespo">
+                        <!-- Update Quantity Form -->
+                            <form action="/cart/update" method="POST" class="update-form cart-quantity">
+                                <input type="hidden" name="productId" value="{{this.productId._id}}" class="qtyvalue">
+                                <input type="number" name="quantity" value="{{this.quantity}}" min="1" class="qtyvalue">
+                                <button type="submit" class="qtybtn">Update</button>
+                            </form>
+                            
+                            <!-- Delete Item Form -->
+                            <form action="/cart/delete" method="POST" class="delete-form">
+                                <input type="hidden" name="productId" value="{{this.productId._id}}">
+                                <button type="submit" class="cart-remove"><i class='bx bxs-trash-alt'></i></button>
+                            </form>
+                        </div>
+                    </div>
                 </li>
             {{/each}}
         </ul>
+
+        {{!-- Total Price Cart update --}}
+        <div class="total">
+            <div class="total-title">Total</div>
+            <div class="total-price">$0</div>
+        </div>
+
+        <!-- Cart Close -->
         
+
+        {{!-- Submit Btn --}}
         <form action="/cart/checkout" method="POST">
-            <button type="submit">Checkout</button>
+            <button type="submit" class="btn-buy">Checkout</button>
         </form>
     {{/if}}
+    <i class='bx bx-cart-add' id="close-cart"></i>
 </div>

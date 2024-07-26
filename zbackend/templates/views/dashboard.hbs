@@ -126,7 +126,6 @@
             font-weight: 500;
         }
         .cart-quantity{
-            border: 1px solid var(--text-color);
             outline-color: var(--main-color);
             width: 2.4rem;
             text-align: center;
@@ -143,7 +142,7 @@
         }
         .detail-box{
             display: grid;
-            row-gap: 0.5rem;
+            color: #131924;
         }
         .total{
             display: flex;
@@ -177,8 +176,8 @@
         }
         #close-cart{
             position: absolute;   
-            top: 1rem;
-            right: .8rem;
+            top: 1.2rem;
+            right: 1.1rem;
             font-size: 2rem;
             color: var(--text-color);
         }
@@ -242,6 +241,7 @@
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
+            
         }
         .product-desc,.product-type{
             font-size: .9rem;
@@ -536,14 +536,17 @@
             <i class="bx bx-shopping-bag" id="cart-icon"></i>
             <div class="cart">
                 
-                <div class="cart-content"></div>
-                {{> cart}}
-                <div class="total">
-                    <div class="total-title">Total</div>
-                    <div class="total-price">$0</div>
-                 </div>
-                 <button type="button" class="btn-buy">Buy Now</button>
-                  <i class="bx bx-x" id="close-cart"></i>
+                <div class="cart-content">
+                    <h2>Your Cart</h2>
+                    {{> cart}}
+                        <div class="total">
+                            <div class="total-title">Total</div>
+                            <div class="total-price">$0</div>
+                        </div>
+                    <button type="button" class="btn-buy">Buy Now</button>
+                    <i class="bx bx-x" id="close-cart"></i>
+                </div>
+                
             </div>
         </div>
     </header>
@@ -597,18 +600,18 @@
 
         <div class="shop-content" id="shop-content">
             {{#each products}}
-            <div class="product-box">
-                <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}" class="product-img">
-                <h2 class="product-title">{{this.title}}</h2>
-                <h3 class="product-desc">{{this.description}}</h3>
-                <h3 class="product-type">{{this.type}}</h3>
-                <span class="price">${{this.price}}</span>
-                <form action="/cart/add" method="POST" class="add-to-cart-form">
-                    <input type="hidden" name="productId" value="{{this._id}}">
-                    <input type="number" name="quantity" value="1" min="1" class="quantity-input" hidden>
-                    <button type="submit" class="add-cart"><i class="bx bx-shopping-bag" id="cart-icon"></i></button>
-                </form>
-            </div>
+                <div class="product-box">
+                    <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}" class="product-img">
+                    <h2 class="product-title">{{this.title}}</h2>
+                    <h3 class="product-desc">{{this.description}}</h3>
+                    <h3 class="product-type">{{this.type}}</h3>
+                    <span class="price">${{this.price}}</span>
+                    <form action="/cart/add" method="POST" class="add-to-cart-form">
+                        <input type="hidden" name="productId" value="{{this._id}}">
+                        <input type="number" name="quantity" value="1" min="1" class="quantity-input" hidden>
+                        <button type="submit" class="add-cart"><i class="bx bx-shopping-bag" id="cart-icon"></i></button>
+                    </form>
+                </div>
             {{/each}}
         </div>
     </section>
