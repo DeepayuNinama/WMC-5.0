@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+=======
+// controllers/productController.js
+>>>>>>> features
 const Product = require("../models/Product");
 const User = require("../models/User");
 const Cart = require("../models/Cart");
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
+<<<<<<< HEAD
+=======
+const paypal = require('paypal-rest-sdk');
+>>>>>>> features
 
 exports.creators = (req, res) => {
     res.render("creators");
@@ -171,7 +179,10 @@ exports.updateCart = async (req, res) => {
     }
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> features
 exports.deleteFromCart = async (req, res) => {
     try {
         const { productId } = req.body;
@@ -207,4 +218,100 @@ exports.deleteFromCart = async (req, res) => {
         console.error(error);
         res.status(500).send("Error removing item from cart");
     }
+<<<<<<< HEAD
+=======
+};
+
+exports.pay = async (req, res) => {
+    const user = await User.findById(req.user._id).populate({
+        path: 'cart',
+        populate: {
+            path: 'items.productId',
+            model: 'Product'
+        }
+    });
+
+    if (!user || !user.cart || user.cart.items.length === 0) {
+        return res.redirect('/cart');
+    }
+
+    const items = user.cart.items.map(item => ({
+        name: item.productId.title,
+        sku: item.productId._id.toString(),
+        price: item.productId.price,
+        currency: 'USD',
+        quantity: item.quantity
+    }));
+
+    const total = user.cart.items.reduce((acc, item) => acc + item.productId.price * item.quantity, 0).toFixed(2);
+
+    req.session.total = total;
+
+    const create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal",
+        },
+        "redirect_urls": {
+            "return_url": "http://localhost:3000/payment/success",
+            "cancel_url": "http://localhost:3000/payment/cancel"
+        },
+        "transactions": [{
+            "item_list": {
+                "items": items
+            },
+            "amount": {
+                "currency": "USD",
+                "total": total
+            },
+            "description": "This is the payment description."
+        }]
+    };
+
+    paypal.payment.create(create_payment_json, (error, payment) => {
+        if (error) {
+            console.log(error);
+            res.status(500).send(error);
+        } else {
+            for (let i = 0; i < payment.links.length; i++) {
+                if (payment.links[i].rel === 'approval_url') {
+                    res.redirect(payment.links[i].href);
+                }
+            }
+        }
+    });
+};
+
+exports.paymentSuccess = async (req, res) => {
+    const payerId = req.query.PayerID;
+    const paymentId = req.query.paymentId;
+
+    const execute_payment_json = {
+        "payer_id": payerId,
+        "transactions": [{
+            "amount": {
+                "currency": "USD",
+                "total": req.session.total 
+            }
+        }]
+    };
+
+    paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
+        if (error) {
+            console.log(error.response);
+            res.status(500).send(error);
+        } else {
+            const user = await User.findById(req.user._id).populate('cart');
+            user.cart.items = [];
+            await user.cart.save();
+            await user.save();
+
+            res.render('success', { payment });
+        }
+    });
+};
+
+exports.paymentCancel = (req, res) => {
+    res.render('cancel');
+>>>>>>> features
 };

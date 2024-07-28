@@ -535,12 +535,24 @@
             <a href="./login" class="logo" onmousedown="audio.play();">Mafia</a>
             <i class="bx bx-shopping-bag" id="cart-icon"></i>
             <div class="cart">
+<<<<<<< HEAD
                 
                 <div class="cart-content">
                     {{> cart}}
 
                 </div>
                 
+=======
+                <h2 class="cart-title">Your Cart</h2>
+                <div class="cart-content"></div>
+                {{> cart}}
+                <div class="total">
+                    <div class="total-title">Total</div>
+                    <div class="total-price">$0</div>
+                 </div>
+                 <button type="button" class="btn-buy">Buy Now</button>
+                  <i class="bx bx-x" id="close-cart"></i>
+>>>>>>> features
             </div>
         </div>
     </header>
@@ -594,6 +606,7 @@
 
         <div class="shop-content" id="shop-content">
             {{#each products}}
+<<<<<<< HEAD
                 <div class="product-box">
                     <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}" class="product-img">
                     <h2 class="product-title">{{this.title}}</h2>
@@ -606,6 +619,20 @@
                         <button type="submit" class="add-cart"><i class="bx bx-shopping-bag" id="cart-icon"></i></button>
                     </form>
                 </div>
+=======
+            <div class="product-box">
+                <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}" class="product-img">
+                <h2 class="product-title">{{this.title}}</h2>
+                <h3 class="product-desc">{{this.description}}</h3>
+                <h3 class="product-type">{{this.type}}</h3>
+                <span class="price">${{this.price}}</span>
+                <form action="/cart/add" method="POST" class="add-to-cart-form">
+                    <input type="hidden" name="productId" value="{{this._id}}">
+                    <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                    <button type="submit" class="add-cart">Add to Cart</button>
+                </form>
+            </div>
+>>>>>>> features
             {{/each}}
         </div>
     </section>

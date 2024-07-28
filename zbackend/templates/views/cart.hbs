@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style>
 
     .btn-buy{
@@ -95,10 +96,16 @@
     <h2>Your Cart</h2>
     {{#if isEmpty}}
         <p class="notialert">Your cart is empty. </a></p>
+=======
+<div id="cart-content">
+    {{#if isEmpty}}
+        <p>Your cart is empty. </a></p>
+>>>>>>> features
     {{else}}
         <ul>
 
             {{#each cart.items}}
+<<<<<<< HEAD
                 <div class="classProd">
                 <li>
                         <div class="cart-stuff">
@@ -152,3 +159,37 @@
 
 <script>
 </script>
+=======
+                <li>
+                    <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="product-img">
+                    <h2>{{this.productId.title}}</h2>
+                    <p>{{this.productId.description}}</p>
+                    <span>Price: ${{this.productId.price}}</span>
+                    <span>Quantity: {{this.quantity}}</span>
+                    
+                    <!-- Update Quantity Form -->
+                    <form action="/cart/update" method="POST" class="update-form">
+                        <input type="hidden" name="productId" value="{{this.productId._id}}">
+                        <input type="number" name="quantity" value="{{this.quantity}}" min="1">
+                        <button type="submit">Update</button>
+                    </form>
+                    
+                    <!-- Delete Item Form -->
+                    <form action="/cart/delete" method="POST" class="delete-form">
+                        <input type="hidden" name="productId" value="{{this.productId._id}}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {{/each}}
+        </ul>
+        
+        <form action="/cart/checkout" method="POST">
+            <button type="submit">Checkout</button>
+        </form>
+        <form action="/pay" method="post">
+            <input type="hidden" name="items" value="{{cart.items}}">
+            <button type="submit">Pay with PayPal</button>
+        </form>
+    {{/if}}
+</div>
+>>>>>>> features
