@@ -131,6 +131,8 @@
                     <tbody>
                         {{#each products}}
                         <tr>
+                            <td>{{this.seller.firstname}}</td>
+                            <td>{{this.seller.lastname}}</td>
                             <td>{{this.title}}</td>
                             <td>{{this.description}}</td>
                             <td>{{this.type}}</td>
@@ -138,6 +140,9 @@
                             <td>
                                 <form action="/admindashboard/{{this._id}}" method="POST">
                                     <button type="submit" class="button-10">Approve</button>
+                                </form>
+                                <form action="/admindashboard/delete/{{this._id}}" method="POST">
+                                    <button type="submit" class="button-10">Reject</button>
                                 </form>
                             </td>
                         </tr>

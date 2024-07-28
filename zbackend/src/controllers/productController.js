@@ -61,7 +61,7 @@ exports.dashboard = async (req, res) => {
 
 exports.admindashboard = async (req, res) => {
     try {
-        const products = await Product.find({ adminApproved: false });
+        const products = await Product.find({ adminApproved: false }).populate('seller');
         res.render("admindashboard", { products });
     } catch (error) {
         res.status(500).send("Error retrieving products");
@@ -82,6 +82,20 @@ exports.approveProduct = async (req, res) => {
         res.status(500).send("Error approving product");
     }
 };
+
+exports.rejectProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await Product.findById(id);
+        if (!product) {
+            return res.status(404).send("Product not found");
+        }
+        await product.remove();
+        res.redirect("/admindashboard");
+    } catch (error) {
+        res.status(500).send("Error rejecting product");
+    }
+}
 
 exports.getCart = async (req, res) => {
     try {
