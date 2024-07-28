@@ -537,14 +537,8 @@
             <div class="cart">
                 
                 <div class="cart-content">
-                    <h2>Your Cart</h2>
                     {{> cart}}
-                        <div class="total">
-                            <div class="total-title">Total</div>
-                            <div class="total-price">$0</div>
-                        </div>
-                    <button type="button" class="btn-buy">Buy Now</button>
-                    <i class="bx bx-x" id="close-cart"></i>
+
                 </div>
                 
             </div>
@@ -724,130 +718,113 @@
             });
         }
 
-        // _______________________________________NEW________________________________________________
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const priceRange = document.getElementById('priceRange');
-            const priceValue = document.getElementById('priceValue');
 
-            // Function to get the maximum price from the products
-            function getMaxPrice() {
-                const priceElements = document.querySelectorAll('.price');
-                let maxPrice = 0;
-                
-                priceElements.forEach(priceElement => {
-                    const price = parseFloat(priceElement.textContent.replace('$', ''));
-                    if (price > maxPrice) {
-                        maxPrice = price;
-                    }
-                });
-                
-                return maxPrice;
-            }
+        // =============================NEW==============================
 
-            // Set the maximum value of the slider and initialize the display
-            const maxPrice = getMaxPrice();
-            priceRange.max = maxPrice;
-            priceRange.value = maxPrice;
-            priceValue.value = maxPrice; // Initialize with max price
 
-            // Event listener for slider input
-            priceRange.addEventListener('input', () => {
-                priceValue.value = priceRange.value;
-                filterProductsByPrice(priceRange.value);
-            });
+        // Product sort by budget 
 
-            // Event listener for manual input field
-            priceValue.addEventListener('input', () => {
-                let inputValue = parseFloat(priceValue.value);
-                // Ensure that the input value does not exceed the max price
-                if (isNaN(inputValue) || inputValue < 0) {
-                    inputValue = 0;
-                } else if (inputValue > priceRange.max) {
-                    inputValue = priceRange.max;
-                }
-                // Update the slider position
-                priceRange.value = inputValue;
-                priceValue.value = inputValue;
-                filterProductsByPrice(inputValue);
-            });
-
-            // Function to filter products by price
-            function filterProductsByPrice(maxPrice) {
+document.addEventListener('DOMContentLoaded', () => {
+            // Category filter functionality
+            function populateCategories() {
+                const categories = new Set();
                 const products = document.querySelectorAll('.product-box');
                 products.forEach(product => {
-                    const priceElement = product.querySelector('.price');
-                    const price = parseFloat(priceElement.textContent.replace('$', ''));
-                    if (price <= maxPrice) {
+                    categories.add(product.dataset.category);
+                });
+                
+                const categoryDropdown = document.getElementById('categoryDropdown');
+                categories.forEach(category => {
+                    const label = document.createElement('label');
+                    label.innerHTML = `<input type="checkbox" class="category-filter" value="${category}"> ${category}`;
+                    categoryDropdown.appendChild(label);
+                });
+
+                document.querySelectorAll('.category-filter').forEach(checkbox => {
+                    checkbox.addEventListener('change', filterProductsByCategory);
+                });
+            }
+
+            function filterProductsByCategory() {
+                const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
+                const products = document.querySelectorAll('.product-box');
+                products.forEach(product => {
+                    if (selectedCategories.length === 0 || selectedCategories.includes(product.dataset.category)) {
                         product.style.display = '';
                     } else {
                         product.style.display = 'none';
                     }
                 });
             }
-        });
 
-
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setupSortByPrice();
-        });
-
-        function setupSortByPrice() {
-            const sortDropdown = document.getElementById('sort-price');
-            if (sortDropdown) {
-                sortDropdown.addEventListener('change', function() {
-                    const sortValue = this.value;
-                    sortProducts(sortValue);
+            // Price sorting functionality
+            const sortPriceSelect = document.querySelectorAll('input[name="sortPrice"]');
+            sortPriceSelect.forEach(radio => {
+                radio.addEventListener('change', event => {
+                    sortProductsByPrice(event.target.value);
                 });
-            } else {
-                console.error('Sort dropdown element not found.');
-            }
-        }
-
-        function sortProducts(order) {
-            const shopContent = document.getElementById('shop-content');
-            if (!shopContent) {
-                console.error('Shop content container not found.');
-                return;
-            }
-
-            const products = Array.from(shopContent.getElementsByClassName('product-box'));
-
-            if (products.length === 0) {
-                console.warn('No products found to sort.');
-                return;
-            }
-
-            products.sort((a, b) => {
-                const priceA = parseFloat(a.querySelector('.price')?.innerText.replace('$', ''));
-                const priceB = parseFloat(b.querySelector('.price')?.innerText.replace('$', ''));
-
-                if (isNaN(priceA) || isNaN(priceB)) {
-                    console.error('Price parsing error.');
-                    return 0; // Default if price parsing fails
-                }
-
-                if (order === 'low-to-high') {
-                    return priceA - priceB;
-                } else if (order === 'high-to-low') {
-                    return priceB - priceA;
-                } else {
-                    console.warn('Invalid sort order.');
-                    return 0; // Default if order is invalid
-                }
             });
 
-            // Reorder products in shop content
-            products.forEach(product => shopContent.appendChild(product));
-        }
+            function sortProductsByPrice(order) {
+                const productsContainer = document.querySelector('.shop-content');
+                const products = Array.from(productsContainer.children);
+
+                products.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('.price').textContent.replace('$', ''));
+                    const priceB = parseFloat(b.querySelector('.price').textContent.replace('$', ''));
+                    return order === 'lowToHigh' ? priceA - priceB : priceB - priceA;
+                });
+
+                productsContainer.innerHTML = '';
+                products.forEach(product => productsContainer.appendChild(product));
+            }
+
+            // Update price range value display and filter products based on price range
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+
+            priceRange.addEventListener('input', () => {
+                priceValue.value = priceRange.value;
+                filterProductsByPrice(priceRange.value);
+            });
+
+            priceValue.addEventListener('input', () => {
+                priceRange.value = priceValue.value;
+                filterProductsByPrice(priceValue.value);
+            });
+
+            function filterProductsByPrice(maxPrice) {
+                const products = document.querySelectorAll('.product-box');
+                products.forEach(product => {
+                    const price = parseFloat(product.querySelector('.price').textContent.replace('$', ''));
+                    if (price <= maxPrice || maxPrice === '') {
+                        product.style.display = '';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initial population of categories and price range max value
+            populateCategories();
+            const maxPrice = Math.max(...Array.from(document.querySelectorAll('.price')).map(priceElement => parseFloat(priceElement.textContent.replace('$', ''))));
+            priceRange.max = maxPrice;
+            priceValue.max = maxPrice;
+        });
+
+
+
+
+
+
+
+
 
         var audio = new Audio();
         audio.src='audio/click.mp3';
         var error = new Audio();
         error.src = 'audio/error.mp3';
-
 
     </script>
 </body>
