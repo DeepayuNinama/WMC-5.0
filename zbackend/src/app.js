@@ -79,9 +79,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 paypal.configure({
-  'mode': process.env.PAYPAL_MODE,
-  'client_id': process.env.PAYPAL_CLIENT_ID,
-  'client_secret': process.env.PAYPAL_CLIENT_SECRET
+  'mode': "sandbox",
+  'client_id': "AScAxfn3k2xlAb4Kjzh87kQ6-dOu9wHCuoiEY-1yVOxRtH6Dlumuv_w6IYYjqVUABxheQtiM_AH4WYM0",
+  'client_secret': "EPmOr7WyJ764XWbdyyoRxtCCKhFDlsqYYU30u0Gn_jxe_vBmthO1lXq6Xyfra8YigTlKxtMHePu4GAOE"
 });
 
 app.use(express.static(static_path));
