@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-=======
-// controllers/productController.js
->>>>>>> features
 const Product = require("../models/Product");
 const User = require("../models/User");
 const Cart = require("../models/Cart");
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
-<<<<<<< HEAD
-=======
 const paypal = require('paypal-rest-sdk');
->>>>>>> features
 
 exports.creators = (req, res) => {
     res.render("creators");
@@ -179,10 +172,6 @@ exports.updateCart = async (req, res) => {
     }
 };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> features
 exports.deleteFromCart = async (req, res) => {
     try {
         const { productId } = req.body;
@@ -218,8 +207,7 @@ exports.deleteFromCart = async (req, res) => {
         console.error(error);
         res.status(500).send("Error removing item from cart");
     }
-<<<<<<< HEAD
-=======
+
 };
 
 exports.pay = async (req, res) => {
@@ -313,5 +301,4 @@ exports.paymentSuccess = async (req, res) => {
 
 exports.paymentCancel = (req, res) => {
     res.render('cancel');
->>>>>>> features
 };

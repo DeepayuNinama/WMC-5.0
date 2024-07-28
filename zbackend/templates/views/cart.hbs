@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 <style>
-
-    .btn-buy{
+    .btn-buy {
         display: flex;
         margin: 1.5rem auto 0 auto;
         padding: 12px 20px;
@@ -12,184 +10,119 @@
         font-weight: 500;
         transition: .4s ease;
     }
-    .cart-stuff{
+    .cart-stuff {
         display: flex;
     }
-    .detail-box{
+    .detail-box {
         color: #131924;
     }
-
-    .cart-product-title{
-        
-    }
-
-    .classDesc{
+    .classDesc {
         margin-top: -20px;
     }
-    .classPrice{
+    .classPrice {
         margin-top: -20px;
     }
-
-    .classProd{
+    .classProd {
         margin-top: 20px;
     }
-
-    .jsrespo{
+    .jsrespo {
         display: flex;
         justify-content: space-between;
     }
-
-    .delete-form{
+    .delete-form {
         justify-content: flex-end;
     }
-
-    .qtyvalue{
-
+    .qtyvalue {
         width: 40px;
         height: 20px;
         justify-content: center;
         border: none;
     }
-/* CSS */
-.button-10 {
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6px 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-  border-radius: 6px;
-  border: none;
-
-  color: #fff;
-  background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
-   background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-10:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
-}
-
-    .cart-quantity{
+    .button-10 {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6px 14px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+        background-origin: border-box;
+        box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+    .button-10:focus {
+        box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+        outline: 0;
+    }
+    .cart-quantity {
         padding: 10px;
         display: flex;
     }
-
-    .cart-remove{
+    .cart-remove {
         background-color: #13192400;
         border: none;
     }
-    .notialert{
+    .notialert {
         justify-content: center;
         margin-top: 20px;
         color: #131924;
     }
-
 </style>
 
 <div id="cart-content">
     <h2>Your Cart</h2>
     {{#if isEmpty}}
         <p class="notialert">Your cart is empty. </a></p>
-=======
-<div id="cart-content">
-    {{#if isEmpty}}
-        <p>Your cart is empty. </a></p>
->>>>>>> features
     {{else}}
         <ul>
-
             {{#each cart.items}}
-<<<<<<< HEAD
                 <div class="classProd">
                 <li>
-                        <div class="cart-stuff">
-                            <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="cart-img">
+                    <div class="cart-stuff">
+                        <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="cart-img">
 
-                            <div class="detail-box">
-                                <h2 class="cart-product-title">{{this.productId.title}}</h2>
-                                <p class="classDesc">{{this.productId.description}}</p>
-                                <span class="classPrice">Price: ${{this.productId.price}}</span>
-                                {{!-- <span class="cart-quantity">Quantity: {{this.quantity}}</span> --}}
-                            </div>
-                        </div>
-
-
-                        <div class="jsrespo">
-                        <!-- Update Quantity Form -->
-                            <form action="/cart/update" method="POST" class="update-form cart-quantity">
-                                <input type="hidden" name="productId" value="{{this.productId._id}}" class="qtyvalue">
-                                <input type="number" name="quantity" value="{{this.quantity}}" min="1" class="qtyvalue">
-                                <button type="submit" class="button-10">Update</button>
-                            </form>
-                            
-                            <!-- Delete Item Form -->
-                            <form action="/cart/delete" method="POST" class="delete-form">
-                                <input type="hidden" name="productId" value="{{this.productId._id}}">
-                                <button type="submit" class="cart-remove"><i class='bx bxs-trash-alt'></i></button>
-                            </form>
+                        <div class="detail-box">
+                            <h2 class="cart-product-title">{{this.productId.title}}</h2>
+                            <p class="classDesc">{{this.productId.description}}</p>
+                            <span class="classPrice">Price: ${{this.productId.price}}</span>
                         </div>
                     </div>
+
+                    <div class="jsrespo">
+                        <!-- Update Quantity Form -->
+                        <form action="/cart/update" method="POST" class="update-form cart-quantity">
+                            <input type="hidden" name="productId" value="{{this.productId._id}}" class="qtyvalue">
+                            <input type="number" name="quantity" value="{{this.quantity}}" min="1" class="qtyvalue">
+                            <button type="submit" class="button-10">Update</button>
+                        </form>
+                        
+                        <!-- Delete Item Form -->
+                        <form action="/cart/delete" method="POST" class="delete-form">
+                            <input type="hidden" name="productId" value="{{this.productId._id}}">
+                            <button type="submit" class="cart-remove"><i class='bx bxs-trash-alt'></i></button>
+                        </form>
+                    </div>
                 </li>
+            </div>
             {{/each}}
         </ul>
 
-        {{!-- Total Price Cart update --}}
+        <!-- Total Price Cart update -->
         <div class="total">
             <div class="total-title">Total</div>
             <div class="total-price">$0</div>
         </div>
 
-        <!-- Cart Close -->
-        
-
-        {{!-- Submit Btn --}}
-        <form action="/cart/checkout" method="POST">
+        <!-- Submit Btn -->
+        <form action="/pay" method="POST">
             <button type="submit" class="btn-buy">Checkout</button>
         </form>
     {{/if}}
     <!-- Cart Close -->
     <i class='bx bx-cart-add' id="close-cart"></i>
 </div>
-
-<script>
-</script>
-=======
-                <li>
-                    <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="product-img">
-                    <h2>{{this.productId.title}}</h2>
-                    <p>{{this.productId.description}}</p>
-                    <span>Price: ${{this.productId.price}}</span>
-                    <span>Quantity: {{this.quantity}}</span>
-                    
-                    <!-- Update Quantity Form -->
-                    <form action="/cart/update" method="POST" class="update-form">
-                        <input type="hidden" name="productId" value="{{this.productId._id}}">
-                        <input type="number" name="quantity" value="{{this.quantity}}" min="1">
-                        <button type="submit">Update</button>
-                    </form>
-                    
-                    <!-- Delete Item Form -->
-                    <form action="/cart/delete" method="POST" class="delete-form">
-                        <input type="hidden" name="productId" value="{{this.productId._id}}">
-                        <button type="submit">Remove</button>
-                    </form>
-                </li>
-            {{/each}}
-        </ul>
-        
-        <form action="/cart/checkout" method="POST">
-            <button type="submit">Checkout</button>
-        </form>
-        <form action="/pay" method="post">
-            <input type="hidden" name="items" value="{{cart.items}}">
-            <button type="submit">Pay with PayPal</button>
-        </form>
-    {{/if}}
-</div>
->>>>>>> features
