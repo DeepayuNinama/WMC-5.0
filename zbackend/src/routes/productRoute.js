@@ -11,7 +11,7 @@ router.get("/sell", isAuthenticated, productController.sell);
 router.post("/sell", isAuthenticated, upload, productController.sellProduct);
 router.get("/admindashboard", isAuthenticated, productController.admindashboard);
 router.post("/admindashboard/:id", isAuthenticated, productController.approveProduct);
-router.post("/admindashboard/delete/:id", isAuthenticated, productController.deleteProduct);
+router.post("/admindashboard/delete/:id", isAuthenticated, productController.rejectProduct);
 
 router.get("/cart", isAuthenticated, productController.getCart);
 router.post("/cart/add", isAuthenticated, productController.addToCart);
