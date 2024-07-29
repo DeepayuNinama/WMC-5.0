@@ -582,7 +582,17 @@
                 <div class="dropdown">
                     <button class="dropbtn">APPLY FILTER<i class='bx bxs-filter-alt' style='color:#ffffff'></i></button>
                     <div class="dropdown-content CategoryList">
-                        <!-- The category list items will be dynamically populated by JavaScript -->
+                        <ul>
+                            {{!-- 
+                            <li>
+                                <label>
+                                    Mens 
+                                    <input type="checkbox">
+                                    <span class="check"></span>
+                                </label>
+                            </li>
+                             --}}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -605,6 +615,55 @@
         </div>
     </section>
 
+
+
+    {{!-- Filter feature --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const products = Array.from(document.querySelectorAll(".product-box"));
+            const categories = [...new Set(products.map(product => product.querySelector(".product-type").textContent.trim()))];
+
+            const categoryList = document.querySelector(".CategoryList ul");
+
+            categories.forEach(category => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <label>
+                        ${category}
+                        <input type="checkbox" class="category-checkbox" value="${category}">
+                        <span class="check"></span>
+                    </label>
+                `;
+                categoryList.appendChild(li);
+            });
+
+            const checkboxes = Array.from(document.querySelectorAll(".category-checkbox"));
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener("change", filterProducts);
+            });
+
+            function filterProducts() {
+                const selectedCategories = checkboxes
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                if (selectedCategories.length === 0) {
+                    products.forEach(product => product.style.display = "");
+                } else {
+                    products.forEach(product => {
+                        const productCategory = product.querySelector(".product-type").textContent.trim();
+                        if (selectedCategories.includes(productCategory)) {
+                            product.style.display = "";
+                        } else {
+                            product.style.display = "none";
+                        }
+                    });
+                }
+            }
+        });
+
+    </script>
     {{!-- Search Tools --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
