@@ -72,10 +72,14 @@
         margin-top: 20px;
         color: #131924;
     }
+
 </style>
 
 <div id="cart-content">
+
     <h2>Your Cart</h2>
+    <a href="/dashboard"><i class='bx bx-cart-add' id="close-cart"></i></a>
+
     {{#if isEmpty}}
         <p class="notialert">Your cart is empty.</p>
     {{else}}
@@ -87,7 +91,7 @@
                         <div class="detail-box">
                             <h2 class="cart-product-title">{{this.productId.title}}</h2>
                             <p class="classDesc">{{this.productId.description}}</p>
-                            <span class="classPrice">Price: ${{this.productId.price}}</span>
+                            <span class="classPrice">${{this.productId.price}}</span>
                         </div>
                     </div>
                     <div class="jsrespo">
@@ -116,7 +120,10 @@
             <button type="submit" class="btn-buy">Checkout</button>
         </form>
     {{/if}}
-    <!-- Cart Close -->
-    <a href="/dashboard"><i class='bx bx-cart-add' id="close-cart"></i></a>
+    
 </div>
+
+<script>
+</script>
+
 
