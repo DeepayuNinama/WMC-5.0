@@ -615,7 +615,59 @@
         </div>
     </section>
 
+    {{!-- sort by user's Budget --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all the product prices
+            const prices = Array.from(document.querySelectorAll('.product-box'))
+                .map(product => parseFloat(product.getAttribute('data-price')));
 
+            // Determine the min and max prices
+            const minPrice = Math.min(...prices);
+            const maxPrice = Math.max(...prices);
+
+            // Get the input elements
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+
+            // Set the min and max values for the inputs
+            priceRange.min = minPrice;
+            priceRange.max = maxPrice;
+            priceValue.min = minPrice;
+            priceValue.max = maxPrice;
+
+            // Set initial values
+            priceRange.value = maxPrice;
+            priceValue.value = maxPrice;
+
+            // Event listeners for synchronizing the inputs
+            priceRange.addEventListener('input', () => {
+                priceValue.value = priceRange.value;
+                filterProductsByPrice(priceRange.value);
+            });
+
+            priceValue.addEventListener('input', () => {
+                if (priceValue.value > maxPrice) priceValue.value = maxPrice;
+                if (priceValue.value < minPrice) priceValue.value = minPrice;
+                priceRange.value = priceValue.value;
+                filterProductsByPrice(priceValue.value);
+            });
+
+            // Function to filter products by price
+            function filterProductsByPrice(maxPrice) {
+                const productBoxes = document.querySelectorAll('.product-box');
+                productBoxes.forEach(box => {
+                    const productPrice = parseFloat(box.getAttribute('data-price'));
+                    if (productPrice <= maxPrice) {
+                        box.style.display = 'block';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+    </script>
 
     {{!-- Filter feature --}}
     <script>
