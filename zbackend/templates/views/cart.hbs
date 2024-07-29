@@ -77,22 +77,19 @@
 <div id="cart-content">
     <h2>Your Cart</h2>
     {{#if isEmpty}}
-        <p class="notialert">Your cart is empty. </a></p>
+        <p class="notialert">Your cart is empty.</p>
     {{else}}
         <ul>
             {{#each cart.items}}
-                <div class="classProd">
-                <li>
+                <li class="classProd">
                     <div class="cart-stuff">
                         <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="cart-img">
-
                         <div class="detail-box">
                             <h2 class="cart-product-title">{{this.productId.title}}</h2>
                             <p class="classDesc">{{this.productId.description}}</p>
                             <span class="classPrice">Price: ${{this.productId.price}}</span>
                         </div>
                     </div>
-
                     <div class="jsrespo">
                         <!-- Update Quantity Form -->
                         <form action="/cart/update" method="POST" class="update-form cart-quantity">
@@ -100,7 +97,6 @@
                             <input type="number" name="quantity" value="{{this.quantity}}" min="1" class="qtyvalue">
                             <button type="submit" class="button-10">Update</button>
                         </form>
-                        
                         <!-- Delete Item Form -->
                         <form action="/cart/delete" method="POST" class="delete-form">
                             <input type="hidden" name="productId" value="{{this.productId._id}}">
@@ -108,16 +104,13 @@
                         </form>
                     </div>
                 </li>
-            </div>
             {{/each}}
         </ul>
-
         <!-- Total Price Cart update -->
         <div class="total">
             <div class="total-title">Total</div>
-            <div class="total-price">$0</div>
+            <div id="total-price" class="total-price">$0</div>
         </div>
-
         <!-- Submit Btn -->
         <form action="/pay" method="POST">
             <button type="submit" class="btn-buy">Checkout</button>
@@ -126,3 +119,4 @@
     <!-- Cart Close -->
     <a href="/dashboard"><i class='bx bx-cart-add' id="close-cart"></i></a>
 </div>
+

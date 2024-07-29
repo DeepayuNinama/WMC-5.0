@@ -571,10 +571,10 @@
 
                 <div id="filter-container">
                     <label for="sort-price" class="sort-price">SORT</label>
-                    <select id="sort-price">
-                        <option value="default">Sort By Price</option>
-                        <option value="low-to-high">Low to High</option>
-                        <option value="high-to-low">High to Low</option>
+                    <select id="select">
+                        <option value="default">Default</option>
+                        <option value="LowToHigh">Low to High</option>
+                        <option value="HighToLow">High to Low</option>
                     </select>
                 </div>
 
@@ -586,12 +586,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-        <div class="shop-content" id="shop-content">
+        <div class="shop-content" >
             {{#each products}}
-                <div class="product-box">
+                <div class="product-box" data-price={{this.price}}>
                     <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}" class="product-img">
                     <h2 class="product-title">{{this.title}}</h2>
                     <h3 class="product-desc">{{this.description}}</h3>
@@ -607,6 +605,41 @@
         </div>
     </section>
 
+    {{!-- Search Tools --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sortSelect = document.getElementById('select');
+            const productContainer = document.querySelector('.shop-content');
+            const products = Array.from(productContainer.querySelectorAll('.product-box'));
+
+            // Store the initial order of the products
+            const initialProductsOrder = products.map(product => product.outerHTML);
+
+            sortSelect.addEventListener('change', function() {
+                const sortOption = this.value;
+
+                if (sortOption === 'LowToHigh') {
+                    products.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
+                } else if (sortOption === 'HighToLow') {
+                    products.sort((a, b) => parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
+                } else if (sortOption === 'default') {
+                    productContainer.innerHTML = initialProductsOrder.join('');
+                    return; // Exit the function early
+                }
+
+                // Clear the current product list
+                productContainer.innerHTML = '';
+
+                // Append the sorted products back to the container
+                products.forEach(product => productContainer.appendChild(product));
+            });
+        });
+
+
+    </script>
+
+
+    {{!-- Search and Cart Open Feature --}}
     <script>
         let cartIcon = document.querySelector("#cart-icon");
         let cart = document.querySelector(".cart");
@@ -632,76 +665,6 @@
             ready();
         }
 
-        function buyButtonClicked(){
-            alert("Your Order is Placed");
-            var cartContent = document.getElementsByClassName("cart-content")[0];
-            while(cartContent.hasChildNodes()){
-                cartContent.removeChild(cartContent.firstChild);
-            }
-            updatetotal();
-        }
-
-
-        function updatetotal() {
-            var cartContent = document.getElementsByClassName('cart-content')[0];
-            var cartBoxes = cartContent.getElementsByClassName('cart-box');
-            var total = 0;
-            for( var i = 0; i < cartBoxes.length; i++){
-                var cartBox = cartBoxes[i];
-                var priceElement = cartBox.getElementsByClassName('cart-price')[0];
-                var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0];
-                var price = parseFloat(priceElement.innerText.replace("$", ""));
-                var quantity = quantityElement.value;
-                total = total + (price * quantity);
-            }
-            total = Math.round(total * 100) / 100;
-            document.getElementsByClassName("total-price")[0].innerText = "$" + total;
-        }
-
-        function populateCategories() {
-            const productTypes = document.querySelectorAll('.product-type');
-            const categories = new Set();
-            
-            productTypes.forEach(typeElement => {
-                const categoryText = typeElement.innerText.replace("Type: ", "").trim();
-                if (categoryText !== "") {
-                    categories.add(categoryText);
-                }
-            });
-
-            const categoryListDiv = document.querySelector('.CategoryList');
-            categories.forEach(category => {
-                const label = document.createElement('label');
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.value = category;
-                checkbox.addEventListener('change', filterProducts);
-                label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(category));
-                categoryListDiv.appendChild(label);
-            });
-        }
-
-        function filterProducts() {
-            const checkboxes = document.querySelectorAll('.CategoryList input[type="checkbox"]');
-            const checkedCategories = [];
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    checkedCategories.push(checkbox.value);
-                }
-            });
-
-            const productBoxes = document.querySelectorAll('.product-box');
-            productBoxes.forEach(box => {
-                const productType = box.querySelector('.product-type').innerText.replace("Type: ", "").trim();
-                if (checkedCategories.length === 0 || checkedCategories.includes(productType)) {
-                    box.style.display = 'block';
-                } else {
-                    box.style.display = 'none';
-                }
-            });
-        }
-
         function search() {
             const searchInput = document.getElementById('search-item').value.toUpperCase();
             const productBoxes = document.querySelectorAll('.product-box');
@@ -714,109 +677,6 @@
                 }
             });
         }
-
-
-
-        // =============================NEW==============================
-
-
-        // Product sort by budget 
-
-document.addEventListener('DOMContentLoaded', () => {
-            // Category filter functionality
-            function populateCategories() {
-                const categories = new Set();
-                const products = document.querySelectorAll('.product-box');
-                products.forEach(product => {
-                    categories.add(product.dataset.category);
-                });
-                
-                const categoryDropdown = document.getElementById('categoryDropdown');
-                categories.forEach(category => {
-                    const label = document.createElement('label');
-                    label.innerHTML = `<input type="checkbox" class="category-filter" value="${category}"> ${category}`;
-                    categoryDropdown.appendChild(label);
-                });
-
-                document.querySelectorAll('.category-filter').forEach(checkbox => {
-                    checkbox.addEventListener('change', filterProductsByCategory);
-                });
-            }
-
-            function filterProductsByCategory() {
-                const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
-                const products = document.querySelectorAll('.product-box');
-                products.forEach(product => {
-                    if (selectedCategories.length === 0 || selectedCategories.includes(product.dataset.category)) {
-                        product.style.display = '';
-                    } else {
-                        product.style.display = 'none';
-                    }
-                });
-            }
-
-            // Price sorting functionality
-            const sortPriceSelect = document.querySelectorAll('input[name="sortPrice"]');
-            sortPriceSelect.forEach(radio => {
-                radio.addEventListener('change', event => {
-                    sortProductsByPrice(event.target.value);
-                });
-            });
-
-            function sortProductsByPrice(order) {
-                const productsContainer = document.querySelector('.shop-content');
-                const products = Array.from(productsContainer.children);
-
-                products.sort((a, b) => {
-                    const priceA = parseFloat(a.querySelector('.price').textContent.replace('$', ''));
-                    const priceB = parseFloat(b.querySelector('.price').textContent.replace('$', ''));
-                    return order === 'lowToHigh' ? priceA - priceB : priceB - priceA;
-                });
-
-                productsContainer.innerHTML = '';
-                products.forEach(product => productsContainer.appendChild(product));
-            }
-
-            // Update price range value display and filter products based on price range
-            const priceRange = document.getElementById('priceRange');
-            const priceValue = document.getElementById('priceValue');
-
-            priceRange.addEventListener('input', () => {
-                priceValue.value = priceRange.value;
-                filterProductsByPrice(priceRange.value);
-            });
-
-            priceValue.addEventListener('input', () => {
-                priceRange.value = priceValue.value;
-                filterProductsByPrice(priceValue.value);
-            });
-
-            function filterProductsByPrice(maxPrice) {
-                const products = document.querySelectorAll('.product-box');
-                products.forEach(product => {
-                    const price = parseFloat(product.querySelector('.price').textContent.replace('$', ''));
-                    if (price <= maxPrice || maxPrice === '') {
-                        product.style.display = '';
-                    } else {
-                        product.style.display = 'none';
-                    }
-                });
-            }
-
-            // Initial population of categories and price range max value
-            populateCategories();
-            const maxPrice = Math.max(...Array.from(document.querySelectorAll('.price')).map(priceElement => parseFloat(priceElement.textContent.replace('$', ''))));
-            priceRange.max = maxPrice;
-            priceValue.max = maxPrice;
-        });
-
-
-
-
-
-
-
-
 
         var audio = new Audio();
         audio.src='audio/click.mp3';
