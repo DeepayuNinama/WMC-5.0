@@ -64,6 +64,7 @@
                     <ul>
                         {{#each cart.items}}
                             <li>
+                                <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="cart-img">
                                 <h3>{{this.productId.title}}</h3>
                                 <p>{{this.productId.description}}</p>
                                 <p>Price: ${{this.productId.price}}</p>

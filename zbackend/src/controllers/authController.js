@@ -27,8 +27,8 @@ exports.login = async(req, res) => {
             res.redirect("admindashboard");
         } else {
             req.session.successMessage = 'Login successful!';
-            res.redirect("dashboard"); 
         }
+
     } catch (error) {
         req.session.errorMessage = error.message;
         res.redirect("/login");
