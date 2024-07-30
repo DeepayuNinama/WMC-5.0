@@ -13,8 +13,22 @@ exports.renderRegisterForm = (req, res) => {
     res.render("register");
 };
 
-exports.login = (req, res) => {
-    res.redirect("dashboard"); 
+exports.login = async(req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        //Change to required admin emailid
+        if(user.emailid === "donkingk12345@gmail.com"){
+            res.redirect("admindashboard");
+        }else{
+            res.redirect("dashboard"); 
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 };
 
 exports.register = async (req, res) => {

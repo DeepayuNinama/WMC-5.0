@@ -86,11 +86,10 @@ exports.approveProduct = async (req, res) => {
 exports.rejectProduct = async (req, res) => {
     try {
         const { id } = req.params;
-        const product = await Product.findById(id);
+        const product = await Product.findByIdAndDelete(id);
         if (!product) {
             return res.status(404).send("Product not found");
         }
-        await product.remove();
         res.redirect("/admindashboard");
     } catch (error) {
         res.status(500).send("Error rejecting product");
