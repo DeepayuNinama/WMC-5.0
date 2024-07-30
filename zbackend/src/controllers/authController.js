@@ -28,7 +28,7 @@ exports.login = async(req, res) => {
 
         } else {
             req.session.successMessage = 'Login successful!';
-            res.redirect("dashbaord");
+            return res.redirect("dashboard");
         }
 
     } catch (error) {
