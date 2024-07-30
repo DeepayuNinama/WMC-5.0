@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Cart = require("../models/Cart");
+const Order = require("../models/Order");
 
 exports.index = (req, res) => {
     res.render("index");
@@ -57,7 +58,7 @@ exports.register = async (req, res) => {
             res.status(400).send(error.message);
         }
     } else {
-        res.send("Passwords do not match");
+        res.status(400).send("Passwords do not match");
     }
 };
 
@@ -72,11 +73,19 @@ exports.logout = (req, res) => {
 
 exports.renderProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(req.user._id).populate({
+            path: 'cart',
+            populate: {
+                path: 'items.productId',
+                model: 'Product'
+            }
+        });
+        const orders = await Order.find({ user: req.user._id });
+        console.log(orders);
         if (!user) {
             return res.status(404).send("User not found");
         }
-        res.render("profile", { user });
+        res.render("profile", { user, cart: user.cart, orders });
     } catch (error) {
         res.status(400).send(error.message);
     }

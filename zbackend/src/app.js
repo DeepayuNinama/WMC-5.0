@@ -8,6 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const hbs = require('hbs');
+const flash = require('connect-flash');
 
 const paypal = require('paypal-rest-sdk');
 
@@ -87,6 +88,15 @@ paypal.configure({
 app.use(express.static(static_path));
 app.set("view engine", "hbs");
 app.set("views", templates_path);
+
+app.use(flash());
+
+app.use((req,res,next)=>{
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
+  next();
+});
 
 const authRoutes = require("./routes/authRoute");
 const productRoutes = require("./routes/productRoute");

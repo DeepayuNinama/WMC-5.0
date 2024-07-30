@@ -1,6 +1,7 @@
 const Product = require("../models/Product");
 const User = require("../models/User");
 const Cart = require("../models/Cart");
+const Order = require("../models/Order");
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 const paypal = require('paypal-rest-sdk');
@@ -239,7 +240,7 @@ exports.pay = async (req, res) => {
     const items = user.cart.items.map(item => ({
         name: item.productId.title,
         sku: item.productId._id.toString(),
-        price: item.productId.price,
+        price: item.productId.price.toFixed(2),
         currency: 'USD',
         quantity: item.quantity
     }));
@@ -302,12 +303,35 @@ exports.paymentSuccess = async (req, res) => {
             console.log(error.response);
             res.status(500).send(error);
         } else {
-            const user = await User.findById(req.user._id).populate('cart');
+            const user = await User.findById(req.user._id).populate({
+                path: 'cart',
+                populate: {
+                    path: 'items.productId',
+                    model: 'Product'
+                }
+            });
+
+            const orderItems = user.cart.items.map(item => ({
+                productId: item.productId._id,
+                title: item.productId.title,
+                price: item.productId.price,
+                quantity: item.quantity
+            }));
+
+            const order = new Order({
+                user: user._id,
+                items: orderItems,
+                total: req.session.total,
+                status: 'completed'
+            });
+
+            await order.save();
+
             user.cart.items = [];
             await user.cart.save();
             await user.save();
 
-            res.render('success', { payment });
+            res.render('success', { payment, order });
         }
     });
 };
