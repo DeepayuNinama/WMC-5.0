@@ -73,12 +73,34 @@
         color: #131924;
     }
 
+    .alert {
+        padding: 15px;
+        background-color: #f44336;
+        color: white;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    .alert.success {
+        background-color: #4CAF50;
+    }
+    
+
 </style>
 
 <div id="cart-content">
 
     <h2>Your Cart</h2>
+    {{#if successMessage}}
+        <div class="alert success">{{successMessage}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+    {{/if}}
+
     <a href="/dashboard"><i class='bx bx-cart-add' id="close-cart"></i></a>
+
 
     {{#if isEmpty}}
         <p class="notialert">Your cart is empty.</p>
@@ -124,6 +146,10 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const successMessage = "{{successMessage}}";
+        const errorMessage = "{{errorMessage}}";
+    });
 </script>
 
 

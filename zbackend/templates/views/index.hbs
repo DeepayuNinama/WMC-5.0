@@ -231,6 +231,18 @@ input:checked + label .description {
 .card[for="c4"] {
     background-image: url('./image/c4.jpg');
 }
+
+.alert {
+    padding: 15px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.alert.success {
+    background-color: #4CAF50;
+}
     </style>
 </head>
 <body>
@@ -247,6 +259,13 @@ input:checked + label .description {
             </ul>
         </div>
     </header>
+    {{#if successMessage}}
+        <div class="alert success">{{successMessage}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+    {{/if}}
 
     <section class="parallax">
         
@@ -362,6 +381,10 @@ input:checked + label .description {
     </section>
 
     <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const successMessage = "{{successMessage}}";
+            const errorMessage = "{{errorMessage}}";
+        });
         let text = document.getElementById('text');
             // let leaf = document.getElementById('leaf');
         let hill1 = document.getElementById('hill1');

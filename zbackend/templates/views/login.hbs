@@ -274,6 +274,19 @@
             width: 100%;
             height: 100%;
         }
+
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .alert.success {
+            background-color: #4CAF50;
+        }
+        
      </style>
     <title>Mafia | Login & Registration</title>
 </head>
@@ -283,6 +296,14 @@
     <video autoplay muted loop id="myVideo">
         <source src="video/bgvideo.mp4" type="video/mp4">
     </video>
+
+    {{#if successMessage}}
+        <div class="alert success">{{successMessage}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+    {{/if}}
 
 
  <div class="wrapper">
@@ -364,6 +385,10 @@
 </script>
 
 <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+            const successMessage = "{{successMessage}}";
+            const errorMessage = "{{errorMessage}}";
+        });
     var audio = new Audio();
     audio.src='audio/click.mp3';
     var error = new Audio();

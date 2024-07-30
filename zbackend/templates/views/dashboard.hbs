@@ -529,6 +529,19 @@
             color: #fff;
             background-color: #171427;
         }
+
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .alert.success {
+            background-color: #4CAF50;
+        }
+
      </style>
 
     <!-- Font -->
@@ -536,6 +549,13 @@
 
 </head>
 <body>
+    {{#if successMessage}}
+        <div class="alert success">{{successMessage}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+    {{/if}}
     <!-- Header -->
     <header>
         <div class="nav container">
@@ -625,6 +645,10 @@
     {{!-- sort by user's Budget --}}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            const successMessage = "{{successMessage}}";
+            const errorMessage = "{{errorMessage}}";
+
             // Get all the product prices
             const prices = Array.from(document.querySelectorAll('.product-box'))
                 .map(product => parseFloat(product.getAttribute('data-price')));

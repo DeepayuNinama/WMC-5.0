@@ -130,7 +130,18 @@
             gap: 10px;
         }
 
-        /* Media Queries for Responsive Design */
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .alert.success {
+            background-color: #4CAF50;
+        }
+
         @media (max-width: 1200px) {
             .containerbox {
                 width: 90%;
@@ -168,7 +179,6 @@
             }
         }
 
-
     </style>
 </head>
 <body>
@@ -184,17 +194,25 @@
                 <h1>Admin Dashboard</h1>
                 <h2>Products Pending Approval</h2>
             </div>
+
+            {{#if successMessage}}
+                <div class="alert success">{{successMessage}}</div>
+            {{/if}}
+
+            {{#if errorMessage}}
+                <div class="alert">{{errorMessage}}</div>
+            {{/if}}
+
             {{#if products.length}}
                 <table class="table-content">
-                    <thead >
+                    <thead>
                         <tr>
-                            <th class="th">Email Id</th>
-                            <th class="th">Item</th>
-                            <th class="th">Description</th>
-                            <th class="th">Type</th>
-                            <th class="th">$</th>
-                            <th class="th">Action</th>
-
+                            <th>Email Id</th>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>$</th>
+                            <th>Action</th>
                         </tr>
                     </thead>  
                     <tbody>
@@ -225,5 +243,14 @@
             {{/if}}
         </div>
     </div>
+
+    <script>
+        // JavaScript to handle success and error messages
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const successMessage = "{{successMessage}}";
+            const errorMessage = "{{errorMessage}}";
+        });
+    </script>
+
 </body>
 </html>

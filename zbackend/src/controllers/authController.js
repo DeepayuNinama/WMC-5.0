@@ -18,16 +18,20 @@ exports.login = async(req, res) => {
     try {
         const user = await User.findById(req.user._id);
         if (!user) {
-            return res.status(404).send("User not found");
+            req.session.errorMessage = 'User not found!';
+            return res.redirect("/login");
         }
 
         if(user.emailid === "donkingk12345@gmail.com"){
+            req.session.successMessage = 'Welcome Admin!';
             res.redirect("admindashboard");
-        }else{
+        } else {
+            req.session.successMessage = 'Login successful!';
             res.redirect("dashboard"); 
         }
     } catch (error) {
-        res.status(400).send(error.message);
+        req.session.errorMessage = error.message;
+        res.redirect("/login");
     }
 };
 
@@ -36,7 +40,6 @@ exports.register = async (req, res) => {
 
     if (password === confirmpassword) {
         try {
-
             const cart = new Cart({ items: [] });
             await cart.save();
 
@@ -50,22 +53,30 @@ exports.register = async (req, res) => {
 
             await registerUser.save();
             req.login(registerUser, (err) => {
-                if (err) return res.status(500).send(err.message);
+                if (err) {
+                    req.session.errorMessage = err.message;
+                    return res.redirect("/register");
+                }
+                req.session.successMessage = 'Registration successful!';
                 res.redirect("/dashboard");
             });
         } catch (error) {
-            res.status(400).send(error.message);
+            req.session.errorMessage = error.message;
+            res.redirect("/register");
         }
     } else {
-        res.status(400).send("Passwords do not match");
+        req.session.errorMessage = 'Passwords do not match!';
+        res.redirect("/register");
     }
 };
 
 exports.logout = (req, res) => {
     req.logout((err) => {
         if (err) {
-            return next(err);
+            req.session.errorMessage = err.message;
+            return res.redirect("/dashboard");
         }
+        req.session.successMessage = 'Logout successful!';
         res.redirect("/");
     });
 };
@@ -82,11 +93,13 @@ exports.renderProfile = async (req, res) => {
         const orders = await Order.find({ user: req.user._id });
 
         if (!user) {
-            return res.status(404).send("User not found");
+            req.session.errorMessage = 'User not found!';
+            return res.redirect("/dashboard");
         }
         res.render("profile", { user, cart: user.cart, orders });
     } catch (error) {
-        res.status(400).send(error.message);
+        req.session.errorMessage = error.message;
+        res.redirect("/dashboard");
     }
 };
 
@@ -95,7 +108,8 @@ exports.updateProfile = async (req, res) => {
         const { firstname, lastname, emailid } = req.body;
         const user = await User.findById(req.user._id);
         if (!user) {
-            return res.status(404).send("User not found");
+            req.session.errorMessage = 'User not found!';
+            return res.redirect("/profile");
         }
         
         user.firstname = firstname;
@@ -107,8 +121,10 @@ exports.updateProfile = async (req, res) => {
         }
         
         await user.save();
+        req.session.successMessage = 'Profile updated successfully!';
         res.redirect("/profile");
     } catch (error) {
-        res.status(400).send(error.message);
+        req.session.errorMessage = error.message;
+        res.redirect("/profile");
     }
 };

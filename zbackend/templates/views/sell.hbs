@@ -387,6 +387,18 @@ body{
     box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
 
+.alert {
+    padding: 15px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.alert.success {
+    background-color: #4CAF50;
+}
+
 </style>
 </head>
 <body>
@@ -394,6 +406,14 @@ body{
     <video autoplay muted loop id="myVideo">
         <source src="video/bgvideo.mp4" type="video/mp4">
     </video>
+
+    {{#if successMessage}}
+        <div class="alert success">{{successMessage}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+    {{/if}}
 
     <!-- Header -->
     <header class="nav">
@@ -503,6 +523,11 @@ body{
         const selectImage = document.querySelector('.select-image');
         const inputFile = document.querySelector('#file');
         const imgArea = document.querySelector('.img-area');
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const successMessage = "{{successMessage}}";
+            const errorMessage = "{{errorMessage}}";
+        });
 
         selectImage.addEventListener('click', function () {
             inputFile.click();

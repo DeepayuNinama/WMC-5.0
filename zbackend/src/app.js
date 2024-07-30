@@ -76,7 +76,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 const partialsPath = path.join(__dirname, "../templates/views");
 hbs.registerPartials(partialsPath);
 

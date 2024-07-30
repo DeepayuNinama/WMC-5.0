@@ -21,7 +21,7 @@ exports.sell = (req, res) => {
 exports.sellProduct = async (req, res) => {
     try {
         const { title, description, type, price, date } = req.body;
-        const imageurl = req.file ? req.file.filename : 'default.jpg'; // Use filename here
+        const imageurl = req.file ? req.file.filename : 'default.jpg';
         const product = new Product({
             title,
             description,
@@ -32,10 +32,12 @@ exports.sellProduct = async (req, res) => {
             date
         });
         await product.save();
+        req.session.successMessage = 'Product added successfully!';
         res.redirect("/dashboard");
     } catch (error) {
         console.log(error);
-        res.status(500).send(error);
+        req.session.errorMessage = 'Error adding product!';
+        res.redirect("/sell");
     }
 }
 
@@ -56,7 +58,8 @@ exports.dashboard = async (req, res) => {
 
         res.render("dashboard", { products, cart: user.cart });
     } catch (error) {
-        res.status(500).send("Error retrieving products");
+        req.session.errorMessage = 'Error retrieving products!';
+        res.redirect("/");
     }
 };
 
@@ -65,7 +68,8 @@ exports.admindashboard = async (req, res) => {
         const products = await Product.find({ adminApproved: false }).populate('seller');
         res.render("admindashboard", { products });
     } catch (error) {
-        res.status(500).send("Error retrieving products");
+        req.session.errorMessage = 'Error retrieving products!';
+        res.redirect("/");
     }
 }
 
@@ -74,13 +78,16 @@ exports.approveProduct = async (req, res) => {
         const { id } = req.params;
         const product = await Product.findById(id);
         if (!product) {
-            return res.status(404).send("Product not found");
+            req.session.errorMessage = 'Product not found!';
+            return res.redirect("/admindashboard");
         }
         product.adminApproved = true;
         await product.save();
+        req.session.successMessage = 'Product approved successfully!';
         res.redirect("/admindashboard");
     } catch (error) {
-        res.status(500).send("Error approving product");
+        req.session.errorMessage = 'Error approving product!';
+        res.redirect("/admindashboard");
     }
 };
 
@@ -89,11 +96,14 @@ exports.rejectProduct = async (req, res) => {
         const { id } = req.params;
         const product = await Product.findByIdAndDelete(id);
         if (!product) {
-            return res.status(404).send("Product not found");
+            req.session.errorMessage = 'Product not found!';
+            return res.redirect("/admindashboard");
         }
+        req.session.successMessage = 'Product rejected successfully!';
         res.redirect("/admindashboard");
     } catch (error) {
-        res.status(500).send("Error rejecting product");
+        req.session.errorMessage = 'Error rejecting product!';
+        res.redirect("/admindashboard");
     }
 }
 
@@ -111,7 +121,8 @@ exports.getCart = async (req, res) => {
         res.render("cart", { cart, isEmpty: cart.items.length === 0 });
     } catch (error) {
         console.error(error); 
-        res.status(500).send("Error retrieving cart");
+        req.session.errorMessage = 'Error retrieving cart!';
+        res.redirect("/");
     }
 };
 
@@ -122,7 +133,8 @@ exports.addToCart = async (req, res) => {
         const product = await Product.findById(productId);
 
         if (!product) {
-            return res.status(404).json({ message: "Product not found" });
+            req.session.errorMessage = 'Product not found!';
+            return res.redirect("/dashboard");
         }
 
         const user = await User.findById(req.user._id).populate('cart');
@@ -142,10 +154,12 @@ exports.addToCart = async (req, res) => {
         await user.cart.save();
         await user.save();
 
+        req.session.successMessage = 'Item added to cart!';
         res.redirect("/dashboard");
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error adding item to cart");
+        req.session.errorMessage = 'Error adding item to cart!';
+        res.redirect("/dashboard");
     }
 };
 
@@ -161,7 +175,8 @@ exports.updateCart = async (req, res) => {
         });
 
         if (!user || !user.cart) {
-            return res.status(404).send("User or cart not found");
+            req.session.errorMessage = 'User or cart not found!';
+            return res.redirect("/dashboard");
         }
 
         let itemToUpdate = null;
@@ -176,13 +191,16 @@ exports.updateCart = async (req, res) => {
             itemToUpdate.quantity = parseInt(quantity, 10);
             await user.cart.save();
             await user.save();
+            req.session.successMessage = 'Cart item updated!';
             res.redirect('/dashboard');
         } else {
-            res.status(404).send("Cart item not found");
+            req.session.errorMessage = 'Cart item not found!';
+            res.redirect('/dashboard');
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error updating cart item");
+        req.session.errorMessage = 'Error updating cart item!';
+        res.redirect('/dashboard');
     }
 };
 
@@ -198,7 +216,8 @@ exports.deleteFromCart = async (req, res) => {
         });
 
         if (!user || !user.cart) {
-            return res.status(404).send("User or cart not found");
+            req.session.errorMessage = 'User or cart not found!';
+            return res.redirect("/dashboard");
         }
 
         let itemFound = false;
@@ -213,13 +232,16 @@ exports.deleteFromCart = async (req, res) => {
             user.cart.items = user.cart.items.filter(item => item.productId._id.toString() !== productId);
             await user.cart.save();
             await user.save();
+            req.session.successMessage = 'Item removed from cart!';
             res.redirect('/dashboard');
         } else {
-            res.status(404).send("Cart item not found");
+            req.session.errorMessage = 'Cart item not found!';
+            res.redirect('/dashboard');
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error removing item from cart");
+        req.session.errorMessage = 'Error removing item from cart!';
+        res.redirect('/dashboard');
     }
 
 };

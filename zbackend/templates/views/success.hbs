@@ -36,9 +36,27 @@
         .home-link:hover {
             background-color: #2d5a28;
         }
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .alert.success {
+            background-color: #4CAF50;
+        }
     </style>
 </head>
 <body>
+    {{#if successMessage}}
+        <div class="alert success">{{successMessage}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+    {{/if}}
     <div class="container">
         <div class="title">Payment Successful!</div>
         <div class="details">
@@ -46,7 +64,13 @@
             <p>Transaction ID: {{payment.id}}</p>
             <p>Total: ${{payment.transactions.[0].amount.total}}</p>
         </div>
-        <a href="/" class="home-link">Go to Home</a>
+        <a href="/profile" class="home-link">Go to Home</a>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const successMessage = "{{successMessage}}";
+            const errorMessage = "{{errorMessage}}";
+        });
+    </script>
 </body>
 </html>

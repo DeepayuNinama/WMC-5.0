@@ -6,6 +6,17 @@
     <title>User Profile</title>
     <style>
         /* Add your styles here */
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .alert.success {
+            background-color: #4CAF50;
+        }
     </style>
 </head>
 <body>
@@ -15,6 +26,13 @@
         </nav>
     </header>
     <main>
+        {{#if successMessage}}
+            <div class="alert success">{{successMessage}}</div>
+        {{/if}}
+
+        {{#if errorMessage}}
+            <div class="alert">{{errorMessage}}</div>
+        {{/if}}
         <section class="container">
             <h2 class="section-title">Profile</h2>
             <form action="/profile/update" method="POST">
@@ -99,5 +117,11 @@
         </section>
 
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const successMessage = "{{successMessage}}";
+            const errorMessage = "{{errorMessage}}";
+        });
+    </script>
 </body>
 </html>
