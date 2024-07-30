@@ -8,7 +8,6 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const hbs = require('hbs');
-const flash = require('connect-flash');
 
 const paypal = require('paypal-rest-sdk');
 
@@ -69,6 +68,15 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+app.use((req, res, next) => {
+  res.locals.successMessage = req.session.successMessage;
+  res.locals.errorMessage = req.session.errorMessage;
+  delete req.session.successMessage;
+  delete req.session.errorMessage;
+  next();
+});
+
+
 const partialsPath = path.join(__dirname, "../templates/views");
 hbs.registerPartials(partialsPath);
 
@@ -89,14 +97,6 @@ app.use(express.static(static_path));
 app.set("view engine", "hbs");
 app.set("views", templates_path);
 
-app.use(flash());
-
-app.use((req,res,next)=>{
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  res.locals.currUser = req.user;
-  next();
-});
 
 const authRoutes = require("./routes/authRoute");
 const productRoutes = require("./routes/productRoute");

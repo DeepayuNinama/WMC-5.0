@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const authController = require("../controllers/authController");
 const isAuthenticated = require("../middleware/isAuthenticated");
+const isAdmin = require("../middleware/adminCheck");
 
 // Define routes
 router.get("/", authController.index);
