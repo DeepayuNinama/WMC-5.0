@@ -21,8 +21,7 @@ exports.login = async(req, res) => {
             return res.status(404).send("User not found");
         }
 
-        //Change to required admin emailid
-        if(user.emailid === "adminmafia" || user.emailid === "adminmafia1"){
+        if(user.emailid === "donkingk12345@gmail.com"){
             res.redirect("admindashboard");
         }
         else{
@@ -82,7 +81,7 @@ exports.renderProfile = async (req, res) => {
             }
         });
         const orders = await Order.find({ user: req.user._id });
-        console.log(orders);
+
         if (!user) {
             return res.status(404).send("User not found");
         }
