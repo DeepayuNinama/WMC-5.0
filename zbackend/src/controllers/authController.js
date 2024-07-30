@@ -22,11 +22,13 @@ exports.login = async(req, res) => {
             return res.redirect("/login");
         }
 
-        if(user.emailid === "donkingk12345@gmail.com"){
+        if(user.emailid === "adminmafia" || user.emailid === "adminmafia1"){
             req.session.successMessage = 'Welcome Admin!';
             res.redirect("admindashboard");
+
         } else {
             req.session.successMessage = 'Login successful!';
+            res.redirect("dashbaord");
         }
 
     } catch (error) {
