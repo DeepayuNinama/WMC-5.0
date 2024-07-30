@@ -275,12 +275,42 @@
             height: 100%;
         }
 
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
         .alert {
+            top: 122px;
+            right: 30px;
+            text-align: center;
             padding: 15px;
-            background-color: #f44336;
+            width: fit-content;
+            background-color: #6375ffb5;
             color: white;
-            margin-bottom: 15px;
             border-radius: 5px;
+            z-index: 2;
+            padding: 20px;
+            position: fixed;
+            right: 20px;
+            animation: slideIn 0.5s forwards, slideOut 0.5s 4.5s forwards; /* Slide in and out */
         }
 
         .alert.success {

@@ -48,7 +48,7 @@
             height: 100px;
             line-height: 100px;
             background: linear-gradient(rgba(39,39,39, 0.6), transparent);
-            z-index: 100;
+            z-index: 1;
         }
         .nav-logo p{
             color: white;
@@ -101,7 +101,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
             background: rgba(145, 145, 145, 0.194);
             backdrop-filter: blur(10px);
             height: 520px;
@@ -275,12 +274,42 @@
             height: 100%;
         }
 
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
         .alert {
+            top: 122px;
+            right: 50px;
+            text-align: center;
             padding: 15px;
-            background-color: #f44336;
+            width: fit-content;
+            background-color: #6375ffb5;
             color: white;
-            margin-bottom: 15px;
             border-radius: 5px;
+            z-index: 2;
+            padding: 20px;
+            position: fixed;
+            right: 20px;
+            animation: slideIn 0.5s forwards, slideOut 0.5s 4.5s forwards; /* Slide in and out */
         }
 
         .alert.success {
@@ -297,11 +326,11 @@
 </video>
 
 {{#if successMessage}}
-    <div class="alert success">{{successMessage}}</div>
+        <div class="alert success">{{successMessage}}</div>
 {{/if}}
 
 {{#if errorMessage}}
-    <div class="alert">{{errorMessage}}</div>
+        <div class="alert">{{errorMessage}}</div>
 {{/if}}
 
  <div class="wrapper">

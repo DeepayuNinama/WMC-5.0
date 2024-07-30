@@ -67,7 +67,7 @@ exports.register = async (req, res) => {
             res.redirect("/register");
         }
     } else {
-        req.session.errorMessage = 'Passwords do not match!';
+        req.session.errorMessage = 'Passwords do not match !';
         res.redirect("/register");
     }
 };
