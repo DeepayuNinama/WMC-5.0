@@ -69,3 +69,38 @@ exports.logout = (req, res) => {
         res.redirect("/");
     });
 };
+
+exports.renderProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        res.render("profile", { user });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+};
+
+exports.updateProfile = async (req, res) => {
+    try {
+        const { firstname, lastname, emailid } = req.body;
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        
+        user.firstname = firstname;
+        user.lastname = lastname;
+        user.emailid = emailid;
+        
+        if (req.body.password) {
+            user.password = req.body.password;  
+        }
+        
+        await user.save();
+        res.redirect("/profile");
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+};

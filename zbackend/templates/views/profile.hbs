@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <h2 class="logo">Mafia - User Profile</h2>
+        </nav>
+    </header>
+    <main>
+        <section class="container">
+            <h2 class="section-title">Profile</h2>
+            <form action="/profile/update" method="POST">
+                <div class="form-group">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" id="firstname" name="firstname" value="{{user.firstname}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname" value="{{user.lastname}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailid">Email:</label>
+                    <input type="email" id="emailid" name="emailid" value="{{user.emailid}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password (leave blank to keep current):</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <button type="submit" class="btn-update">Update Profile</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
