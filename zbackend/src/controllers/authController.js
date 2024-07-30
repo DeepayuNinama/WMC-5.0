@@ -22,9 +22,10 @@ exports.login = async(req, res) => {
         }
 
         //Change to required admin emailid
-        if(user.emailid === "donkingk12345@gmail.com"){
+        if(user.emailid === "adminmafia" || user.emailid === "adminmafia1"){
             res.redirect("admindashboard");
-        }else{
+        }
+        else{
             res.redirect("dashboard"); 
         }
     } catch (error) {
