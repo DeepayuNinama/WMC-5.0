@@ -45,6 +45,13 @@ exports.register = async (req, res) => {
             const cart = new Cart({ items: [] });
             await cart.save();
 
+            const user = await User({ emailid });
+
+            if(user){
+                req.session.errorMessage = 'User already exists!';
+                return res.redirect("/register");
+            }
+
             const registerUser = new User({
                 firstname,
                 lastname,

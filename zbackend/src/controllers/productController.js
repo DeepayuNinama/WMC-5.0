@@ -35,7 +35,6 @@ exports.sellProduct = async (req, res) => {
         req.session.successMessage = 'Product added successfully!';
         res.redirect("/dashboard");
     } catch (error) {
-        console.log(error);
         req.session.errorMessage = 'Error adding product!';
         res.redirect("/sell");
     }
