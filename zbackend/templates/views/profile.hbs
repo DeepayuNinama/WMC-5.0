@@ -4,8 +4,231 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mafia | User Profile</title>
+
+    
     <style>
-        /* Add your styles here */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        *{  
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            cursor: url(../image/cursor.png), auto;
+        }
+        body{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;  
+            z-index: -1;
+        }
+        .wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 110vh;
+            background: rgba(39, 39, 39, 0.4);
+        }
+        .nav{
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            background: linear-gradient(rgba(39,39,39, 0.6), transparent);
+            z-index: 100;
+        }
+        .nav-logo p{
+            color: white;
+            font-size: 25px;
+            font-weight: 600;
+        }
+        .nav-menu ul{
+            display: flex;
+        }
+        .nav-menu ul li{
+            list-style-type: none;
+        }
+        .nav-menu ul li .link{
+            text-decoration: none;
+            font-weight: 500;
+            color: #fff;
+            padding-bottom: 10px;
+            margin: 0 25px;
+        }
+        .link:hover, .active{
+            border-bottom: 2px solid #fff;
+        }
+        .nav-button .btn{
+            width: 130px;
+            height: 40px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+        .btn:hover{
+            background: rgba(255, 255, 255, 0.3);
+        }
+        #registerBtn{
+            margin-left: 15px;
+        }
+        .btn.white-btn{
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .btn.btn.white-btn:hover{
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .nav-menu-btn{
+            display: none;
+        }
+
+        main{
+            color: #fff;
+            display: flex;
+            gap: 5rem;
+            justify-content: center;
+            margin-top: 60px;
+            padding: 50px;
+        }
+
+        .button-10, .button-red {
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            /* background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%); */
+            background-origin: border-box;
+            /* box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2); */
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .button-10:focus {
+            /* box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5); */
+            outline: 0;
+        }
+
+        .button-10{
+            background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+            box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+        }
+
+        .button-10:focus{
+            box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+        }
+
+        .button-red{
+            background: linear-gradient(180deg, #f74b4b 0%, #f63636 100%);
+            box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+        }
+
+        .button-red:focus{
+            box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(246, 54, 54, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+        }
+
+
+
+
+        .container{
+            padding: 30px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(145, 145, 145, 0.194);
+            backdrop-filter: blur(10px);
+            height: fit-content;
+            width: 550px;
+            border-radius: 15px;
+        }
+
+
+        .input-box i{
+            position: relative;
+            top: -35px;
+            left: 17px;
+            color: #fff;
+        }
+
+        .input-field{
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.265);
+            color: #fff;
+            height: 50px;
+            width: 100%;
+            padding: 0 10px 0 45px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            transition: .2s ease;
+        }
+        .input-field:hover, .input-field:focus{
+            background: rgba(255, 255, 255, 0.25);
+        }
+        ::-webkit-input-placeholder{
+            color: #fff;
+        }
+
+        .form-group{
+            padding-top: 15px;
+        }
+
+
+        .cart-stuff {
+            display: flex;
+        }
+        .detail-box {
+            color: #ffffff;
+        }
+        .classDesc {
+            
+        }
+        .classPrice {
+            margin-top: -20px;
+        }
+        .classProd {
+            margin-top: 20px;
+        }
+        .jsrespo {
+            display: flex;
+            justify-content: space-between;
+        }
+        .delete-form {
+            justify-content: flex-end;
+        }
+        .qtyvalue {
+            width: 40px;
+            height: 20px;
+            justify-content: center;
+            border: none;
+        }
+
+        .cart-img{
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            padding: 10px;
+        }
+
         @keyframes slideIn {
             from {
                 transform: translateX(100%);
@@ -47,42 +270,72 @@
         .alert.success {
             background-color: #4CAF50;
         }
+
+        li{
+            list-style-type: none;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="nav">
-            <h2 class="logo">Mafia - User Profile</h2>
-        </nav>
-    </header>
-    <main>
-        {{#if successMessage}}
-            <div class="alert success">{{successMessage}}</div>
-        {{/if}}
 
-        {{#if errorMessage}}
-            <div class="alert">{{errorMessage}}</div>
-        {{/if}}
+    <!-- video src -->
+    <video autoplay muted loop id="myVideo">
+        <source src="video/bgvideo.mp4" type="video/mp4">
+    </video>
+
+    
+    {{#if successMessage}}
+        <div class="alert success">{{successMessage}}</div>
+    {{/if}}
+
+    {{#if errorMessage}}
+        <div class="alert">{{errorMessage}}</div>
+    {{/if}}
+
+
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>Mafia</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="/" class="link" onmousedown="audio.play();">Home</a></li>
+                <li><a href="#"  class="link active" onmousedown="error.play();">Services</a></li>
+                <li><a href="./creators" class="link" onmousedown="audio.play();">Creators</a></li>
+                <li><a href="./about" class="link" onmousedown="audio.play();">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+
+
+        <!-- 
+        <div class="input-box">
+            <input type="text" class="input-field" placeholder="Firstname" name="firstname">
+            <i class="bx bx-user"></i>
+        </div>
+         -->
         <section class="container">
-            <h2 class="section-title">Profile</h2>
+            <h2 class="section-title">Update Profile</h2>
             <form action="/profile/update" method="POST">
                 <div class="form-group">
-                    <label for="firstname">First Name:</label>
-                    <input type="text" id="firstname" name="firstname" value="{{user.firstname}}" required>
+                    <input type="text" id="firstname" class="input-field" name="firstname" placeholder="First Name" value="{{user.firstname}}" required>
+                    <i class="bx bx-user"></i>
                 </div>
                 <div class="form-group">
-                    <label for="lastname">Last Name:</label>
-                    <input type="text" id="lastname" name="lastname" value="{{user.lastname}}" required>
+                    <input type="text" class="input-field" id="lastname" name="lastname" placeholder="Last Name" value="{{user.lastname}}" required>
+                    <i class="bx bx-user"></i>
                 </div>
                 <div class="form-group">
-                    <label for="emailid">Email:</label>
-                    <input type="email" id="emailid" name="emailid" value="{{user.emailid}}" required>
+                    <input type="email"  class="input-field" id="emailid" name="emailid" placeholder="New Email ID" value="{{user.emailid}}" required>
+                    <i class="bx bx-user"></i>
                 </div>
                 <div class="form-group">
                     <label for="password">Password (leave blank to keep current):</label>
-                    <input type="password" id="password" name="password">
+                    <input type="password" placeholder="Update Password" id="password" class="input-field" name="password">
                 </div>
-                <button type="submit" class="btn-update">Update Profile</button>
+                <button type="submit" class="button-10" class="btn-update">Update Profile</button>
             </form>
         </section>
 
@@ -93,22 +346,35 @@
                 {{#if cart.items.length}}
                     <ul>
                         {{#each cart.items}}
-                            <li>
-                                <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="cart-img">
-                                <h3>{{this.productId.title}}</h3>
-                                <p>{{this.productId.description}}</p>
-                                <p>Price: ${{this.productId.price}}</p>
-                                <p>Quantity: {{this.quantity}}</p>
-                                <form action="/cart/update" method="POST">
-                                    <input type="hidden" name="productId" value="{{this.productId._id}}">
-                                    <label for="quantity">Quantity:</label>
-                                    <input type="number" id="quantity" name="quantity" value="{{this.quantity}}" min="1">
-                                    <button type="submit">Update Quantity</button>
-                                </form>
-                                <form action="/cart/delete" method="POST">
-                                    <input type="hidden" name="productId" value="{{this.productId._id}}">
-                                    <button type="submit">Remove</button>
-                                </form>
+                            <li class="classProd">
+                                <div class="cart-stuff">
+                                    <img src="/uploads/{{this.productId.imageurl}}" alt="{{this.productId.title}}" class="cart-img">
+                                    <div class="detail-box">
+                                        <h2 class="cart-product-title">{{this.productId.title}}</h2>
+                                        <p class="classDesc">{{this.productId.description}}</p>
+                                        <span class="classPrice">${{this.productId.price}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="jsrespo">
+                                    <!-- Update Quantity Form -->
+                                    <form action="/cart/update" method="POST" class="update-form cart-quantity">
+                                        <input type="hidden" name="productId" value="{{this.productId._id}}" class="qtyvalue">
+                                        <input type="number" name="quantity" value="{{this.quantity}}" min="1" class="qtyvalue">
+                                        <button type="submit" class="button-10">Update</button>
+                                    </form>
+
+
+                                    <!-- <form action="/cart/delete" method="POST">
+                                        <input type="hidden" name="productId" value="{{this.productId._id}}">
+                                        <button type="submit" class="button-red" >Remove</button>
+                                    </form> -->
+
+                                    <form action="/cart/delete" method="POST" class="delete-form">
+                                        <input type="hidden" name="productId" value="{{this.productId._id}}">
+                                        <button type="submit" class="button-red">Remove</button>
+                                    </form>
+                                </div>
                             </li>
                         {{/each}}
                     </ul>
@@ -148,6 +414,8 @@
         </section>
 
     </main>
+
+    
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const successMessage = "{{successMessage}}";
