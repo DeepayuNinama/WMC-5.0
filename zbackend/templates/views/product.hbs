@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mafia | Product Detials</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'); 
+*{  
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
+     cursor: url(../image/cursor.png), auto;
+ }
+ body{
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     overflow: hidden;
+ }
+ #myVideo {
+     position: fixed;
+     right: 0;
+     bottom: 0;  
+     z-index: -1;
+ }
+ .nav{
+     position: fixed;
+     top: 0;
+     display: flex;
+     justify-content: space-around;
+     width: 100%;
+     height: 100px;
+     line-height: 100px;
+     background: linear-gradient(rgba(39,39,39, 0.6), transparent);
+     z-index: 1;
+ }
+ .nav-logo p{
+     color: white;
+     font-size: 25px;
+     font-weight: 600;
+ }
+ .nav-menu ul{
+     display: flex;
+ }
+ .nav-menu ul li{
+     list-style-type: none;
+ }
+ .nav-menu ul li .link{
+     text-decoration: none;
+     font-weight: 500;
+     color: #fff;
+     padding-bottom: 10px;
+     margin: 0 25px;
+ }
+ .link:hover, .active{
+     border-bottom: 2px solid #fff;
+ }
+ .nav-button .btn{
+     width: 130px;
+     height: 40px;
+     font-weight: 500;
+     background: rgba(255, 255, 255, 0.4);
+     border: none;
+     border-radius: 30px;
+     cursor: pointer;
+     transition: .3s ease;
+ }
+ .btn:hover{
+     background: rgba(255, 255, 255, 0.3);
+ }
+ #registerBtn{
+     margin-left: 15px;
+ }
+ .btn.white-btn{
+     background: rgba(255, 255, 255, 0.7);
+ }
+ .btn.btn.white-btn:hover{
+     background: rgba(255, 255, 255, 0.5);
+ }
+ .nav-menu-btn{
+     display: none;
+ }
+
+ section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+ }
+.container{
+    display: flex;
+    /* align-items: center; */
+    height: 100vh;
+    padding: 40px;
+    margin-top: 50px;
+    width: 65%;
+    min-height: 500px;
+    height: fit-content;
+    background: rgba(145, 145, 145, 0.194);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    gap: 80px;
+    border: 1px solid#8fcbff5c;
+
+}
+
+.left-content{
+    display: grid;
+    align-self: center;
+    color: #fff;
+}
+
+.img-content{
+    margin-bottom: 20px;
+}
+
+.left-content h3{
+    font-size: 2rem;
+    margin-bottom: 5px;
+    transition: 0.5s ease;
+}
+.left-content h3:hover{
+    color: #e3e3e3;
+    font-size: 2.1rem;
+    
+}
+.left-content span{
+    transition: 0.5s ease;
+}
+.left-content span:hover{
+    font-size: 1.05rem;
+}
+
+.content-wrapper{
+    display: grid;
+}
+
+.img-content{
+    height: 300px;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    border: 1px solid #ffffff;
+    padding: 5px;
+}
+.img-content:hover{
+    padding: 0;
+}
+
+.right-content h1{
+    color: #fff;
+    border-bottom: 2.5px solid#ffffff;
+    padding-top: 13px;
+    margin-bottom: 17px;
+}
+
+.right-content span{
+    color: #eaeaea;
+    font-weight: 500;
+}
+
+/* Btn Style */
+
+.button-cart {
+    align-items: center;
+    appearance: button;
+    background-color: #0276FF;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    font-family: "RM Neue",sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    padding: 10px 21px;
+    text-align: center;
+    text-transform: none;
+    transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 25px;
+  }
+  
+  .button-cart:active {
+    background-color: #006AE8;
+  }
+  
+  .button-cart:hover {
+    background-color: #1C84FF;
+  }
+    </style>
+</head>
+<body>
+
+    <!-- Video -->
+    <video autoplay muted loop id="myVideo">
+        <source src="bgvideo.mp4" type="video/mp4">
+    </video>
+
+    <!-- Nav Bar -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>Mafia</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="./dashboard" class="link active" onmousedown="error.play();">Product</a></li>
+                <li><a href="./dashboard" class="link " onmousedown="audio.play();">Dashboard</a></li>
+                <li><a href="./sell" class="link " onmousedown="audio.play();">List Product</a></li>
+                <li><a href="./profile" class="link" onmousedown="audio.play();">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section>
+
+        <div class="container">
+
+            <div class="left-content">
+                <img src="image/1.jpg"  class="img-content" alt="">
+                <h3>Product Name Here</h3>
+                <span>Category: category name here</span>
+            </div>
+
+            <div class="right-content">
+                <h1>Description</h1>
+                <span>
+                    <br> Speed: ewnijwnfijnewijfnewif
+                    <br><br> Mass: newfnewijnewijnewiwnvij
+                    <br><br> Seats: nwenfewijfnijewnf
+                    <br><br> Features: cijewnfijewnfiewni
+                    <br><br> Best Use Case: cijewnfijewnfiewni
+                </span>
+
+                <span>
+                    <!-- Add to Cart Btn -->
+                    <button class="button-cart" role="button"> Add to Cart</button>
+                </span>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        var audio = new Audio();
+        audio.src='audio/click.mp3';
+        var error = new Audio();
+        error.src = 'audio/error.mp3';
+    </script>
+
+</body>
+</html>
+
+

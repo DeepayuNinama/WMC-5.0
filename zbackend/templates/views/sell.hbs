@@ -108,7 +108,7 @@ body{
 
 .container{
     margin-left: 445px;
-    margin-top: 170px ;
+    margin-top: 130px ;
     width: 45%;
     height: 522px;  
     padding-left: 50px;
@@ -249,7 +249,6 @@ body{
     text-transform: uppercase;
     letter-spacing: 1px;
   }
-  
  
   input:hover+.radio-tile {
     color: antiquewhite;
@@ -452,8 +451,10 @@ body{
         </div>
         <div class="nav-menu" id="navMenu">
             <ul>
-                <li><a href="#" class="link active" onmousedown="error.play();">List Product</a></li>
                 <li><a href="/dashboard" class="link" onmousedown="audio.play();">Dashboard</a></li>
+                <li><a href="#" class="link active" onmousedown="error.play();">List Product</a></li>
+                <li><a href="/profile" class="link" onmousedown="audio.play();">Profile</a></li>
+                
             </ul>
         </div>
     </header>
@@ -582,6 +583,13 @@ body{
                 alert("Image size more than 10MB");
             }
         });
+    </script>
+
+    <script>
+        var audio = new Audio();
+        audio.src='audio/click.mp3';
+        var error = new Audio();
+        error.src = 'audio/error.mp3';
     </script>
 </body>
 </html>

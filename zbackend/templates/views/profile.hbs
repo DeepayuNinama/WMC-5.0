@@ -98,7 +98,7 @@
             display: flex;
             gap: 5rem;
             justify-content: center;
-            margin-top: 60px;
+            margin-top: 100px;
             padding: 50px;
         }
 
@@ -157,6 +157,7 @@
             background: rgba(145, 145, 145, 0.194);
             backdrop-filter: blur(10px);
             height: fit-content;
+            min-height: 510px;
             width: 550px;
             border-radius: 15px;
         }
@@ -274,6 +275,15 @@
         li{
             list-style-type: none;
         }
+
+        .cart-scroll{
+            max-height: 510px;
+            overflow-x: scroll;
+        }
+
+        .cart-scroll::-webkit-scrollbar{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -299,10 +309,9 @@
         </div>
         <div class="nav-menu" id="navMenu">
             <ul>
-                <li><a href="/" class="link" onmousedown="audio.play();">Home</a></li>
-                <li><a href="#"  class="link active" onmousedown="error.play();">Services</a></li>
-                <li><a href="./creators" class="link" onmousedown="audio.play();">Creators</a></li>
-                <li><a href="./about" class="link" onmousedown="audio.play();">About</a></li>
+                <li><a href="./dashboard" class="link " onmousedown="audio.play();">Dashboard</a></li>
+                <li><a href="./sell" class="link " onmousedown="audio.play();">List Product</a></li>
+                <li><a href="#" class="link active" onmousedown="error.play();">Profile</a></li>
             </ul>
         </div>
     </nav>
@@ -340,7 +349,7 @@
         </section>
 
         <!-- Cart Section -->
-        <section class="container">
+        <section class="container cart-scroll">
             <h2 class="section-title">Current Cart</h2>
             {{#if cart}}
                 {{#if cart.items.length}}
@@ -386,7 +395,7 @@
             {{/if}}
         </section>
         <!-- Orders Section -->
-        <section class="container">
+        <section class="container cart-scroll">
             <h2 class="section-title">Order History</h2>
             {{#if orders.length}}
                 <ul>
@@ -422,5 +431,13 @@
             const errorMessage = "{{errorMessage}}";
         });
     </script>
+
+    <script>
+        var audio = new Audio();
+        audio.src='audio/click.mp3';
+        var error = new Audio();
+        error.src = 'audio/error.mp3';
+    </script>
+    
 </body>
 </html>

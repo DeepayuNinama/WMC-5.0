@@ -230,7 +230,7 @@
         .shop-content{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px,auto));
-            gap: 1.5rem;
+            gap: 2rem;
             margin-bottom: 45px;
             
         }
@@ -572,10 +572,22 @@
             background-color: #6375ffb5;
         }
 
+        .gap-icon{
+            gap: 10px;
+            
+        }
+
+        .profile-icon{
+            margin-left: 40px;
+        }
+        
+
      </style>
 
     <!-- Font -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 
 </head>
 <body>
@@ -590,7 +602,10 @@
     <header>
         <div class="nav container">
             <a href="./login" class="logo" onmousedown="audio.play();">Mafia</a>
-            <i class="bx bx-shopping-bag" id="cart-icon"></i>
+            <div class="gap-icon">
+                <i class="bx bx-shopping-bag" id="cart-icon"></i>
+                <a href="./profile" class="profile-icon"><box-icon name='user' color='#ffffff' ></box-icon></a>
+            </div>
             <div class="cart">
                 <div class="cart-content">
                     {{> cart}}
@@ -660,7 +675,11 @@
                     <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}" class="product-img">
                     <h2 class="product-title">{{this.title}}</h2>
                     <h3 class="product-desc">{{this.description}}</h3>
-                    <h3 class="product-type">{{this.type}}</h3>
+                    <h3 class="product-type">Type: {{this.type}}</h3>
+
+                    {{!-- Redirect Link --}}
+                    <h3 class="product-type" ><a href="">Learn more</a></h3>
+
                     <span class="price">${{this.price}}</span>
                     <form action="/cart/add" method="POST" class="add-to-cart-form">
                         <input type="hidden" name="productId" value="{{this._id}}">
