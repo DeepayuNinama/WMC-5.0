@@ -62,6 +62,21 @@ exports.dashboard = async (req, res) => {
     }
 };
 
+exports.productDetails = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const product = await Product.findById(id).populate('seller');
+        if (!product) {
+            req.session.errorMessage = 'Product not found!';
+            return res.redirect("/dashboard");
+        }
+        res.render("product", { product });
+    }catch(error){
+        req.session.errorMessage = 'Error retrieving product!';
+        res.redirect("/dashboard");
+    }
+}
+
 exports.admindashboard = async (req, res) => {
     try {
         const products = await Product.find({ adminApproved: false }).populate('seller');
