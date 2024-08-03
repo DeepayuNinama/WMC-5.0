@@ -212,10 +212,10 @@
         </div>
         <div class="nav-menu" id="navMenu">
             <ul>
-                <li><a href="./dashboard" class="link active" onmousedown="error.play();">Product</a></li>
-                <li><a href="./dashboard" class="link " onmousedown="audio.play();">Dashboard</a></li>
-                <li><a href="./sell" class="link " onmousedown="audio.play();">List Product</a></li>
-                <li><a href="./profile" class="link" onmousedown="audio.play();">Profile</a></li>
+                <li><a href="/dashboard" class="link active" onmousedown="error.play();">Product</a></li>
+                <li><a href="/dashboard" class="link " onmousedown="audio.play();">Dashboard</a></li>
+                <li><a href="/sell" class="link " onmousedown="audio.play();">List Product</a></li>
+                <li><a href="/profile" class="link" onmousedown="audio.play();">Profile</a></li>
             </ul>
         </div>
     </nav>
@@ -225,24 +225,27 @@
         <div class="container">
 
             <div class="left-content">
-                <img src="image/1.jpg"  class="img-content" alt="">
-                <h3>Product Name Here</h3>
-                <span>Category: category name here</span>
+                <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}"  class="img-content">
+                <h3>{{product.title}}</h3>
+                <span>Category: {{product.type}}</span>
             </div>
 
             <div class="right-content">
                 <h1>Description</h1>
-                <span>
+                <p>{{product.description}}</p>
+                <!--<span>
                     <br> Speed: ewnijwnfijnewijfnewif
                     <br><br> Mass: newfnewijnewijnewiwnvij
                     <br><br> Seats: nwenfewijfnijewnf
                     <br><br> Features: cijewnfijewnfiewni
                     <br><br> Best Use Case: cijewnfijewnfiewni
-                </span>
+                </span>-->
 
                 <span>
                     <!-- Add to Cart Btn -->
-                    <button class="button-cart" role="button"> Add to Cart</button>
+                    <form action="/cart/add" method="POST">
+                        <button class="button-cart" role="button" > Add to Cart</button>
+                    </form>
                 </span>
             </div>
         </div>

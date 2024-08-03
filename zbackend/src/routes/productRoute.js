@@ -8,6 +8,7 @@ const upload = require("../middleware/upload");
 router.get("/creators",  productController.creators);
 router.get("/about",  productController.about);
 router.get("/dashboard", isAuthenticated, productController.dashboard);
+router.get("/dashboard/:id", isAuthenticated, productController.productDetails);
 router.get("/sell", isAuthenticated, productController.sell);
 router.post("/sell", isAuthenticated, upload, productController.sellProduct);
 router.get("/admindashboard", isAuthenticated, isAdmin, productController.admindashboard);
