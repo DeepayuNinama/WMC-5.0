@@ -4,8 +4,8 @@
         margin: 1.5rem auto 0 auto;
         padding: 12px 20px;
         border: none;
-        background: var(--main-color);
-        color: var(--bg-color);
+        background: #95caff;
+        color: #131313;
         font-size: 1rem;
         font-weight: 500;
         transition: .4s ease;
@@ -14,7 +14,8 @@
         display: flex;
     }
     .detail-box {
-        color: #131924;
+        margin-left: 15px;
+        color: #e8e8e8;
     }
     .classDesc {
         margin-top: -20px;
@@ -64,8 +65,9 @@
         display: flex;
     }
     .cart-remove {
-        background-color: #13192400;
+        background-color: #ffffff00;
         border: none;
+        color: #ffffff;
     }
     .notialert {
         justify-content: center;
@@ -114,13 +116,29 @@
         .alert.success {
             background-color: #4CAF50;
         }
+
+        .text-colour{
+            color: #93b5ff;
+            text-shadow: #131313;
+        }
+
+        .valuebox{
+            height: 30px;
+            width: 50px;
+            border: none;
+            font-size: 17px;
+            padding: 5px;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #2b2b2bad;
+        }
     
 
 </style>
 
 <div id="cart-content">
 
-    <h2>Your Cart</h2>
+    <h2 class="text-colour">Your Cart</h2>
     {{#if successMessage}}
         <div class="alert success">{{successMessage}}</div>
     {{/if}}
@@ -133,7 +151,7 @@
 
 
     {{#if isEmpty}}
-        <p class="notialert">Your cart is empty.</p>
+        <p class="notialert text-colour">Your cart is empty.</p>
     {{else}}
         <ul>
             {{#each cart.items}}
@@ -149,8 +167,8 @@
                     <div class="jsrespo">
                         <!-- Update Quantity Form -->
                         <form action="/cart/update" method="POST" class="update-form cart-quantity">
-                            <input type="hidden" name="productId" value="{{this.productId._id}}" class="qtyvalue">
-                            <input type="number" name="quantity" value="{{this.quantity}}" min="1" class="qtyvalue">
+                            <input type="hidden" name="productId" value="{{this.productId._id}}" class="qtyvalue ">
+                            <input type="number" name="quantity" value="{{this.quantity}}" min="1" class="qtyvalue valuebox">
                             <button type="submit" class="button-10">Update</button>
                         </form>
                         <!-- Delete Item Form -->
