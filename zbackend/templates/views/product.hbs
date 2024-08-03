@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mafia | Product Detials</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'); 
 *{  
@@ -18,13 +20,17 @@
      background-repeat: no-repeat;
      background-attachment: fixed;
      overflow: hidden;
+     background-color: #161418;
  }
  #myVideo {
-     position: fixed;
-     right: 0;
-     bottom: 0;  
-     z-index: -1;
- }
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the video covers the entire background without distortion */
+    z-index: -1; /* Ensure the video is behind all other content */
+}
  .nav{
      position: fixed;
      top: 0;
@@ -34,7 +40,7 @@
      height: 100px;
      line-height: 100px;
      background: linear-gradient(rgba(39,39,39, 0.6), transparent);
-     z-index: 1;
+     z-index: 2;
  }
  .nav-logo p{
      color: white;
@@ -92,11 +98,11 @@
 .container{
     display: flex;
     /* align-items: center; */
-    height: 100vh;
-    padding: 40px;
+    height: 90vh;
+    padding: 30px;
     margin-top: 50px;
-    width: 65%;
-    min-height: 500px;
+    width: 70%;
+    min-height: 450px;
     height: fit-content;
     background: rgba(145, 145, 145, 0.194);
     backdrop-filter: blur(10px);
@@ -150,7 +156,7 @@
 
 .right-content h1{
     color: #fff;
-    border-bottom: 2.5px solid#ffffff;
+    border-bottom: 1px solid#ffffff;
     padding-top: 13px;
     margin-bottom: 17px;
 }
@@ -197,13 +203,172 @@
     background-color: #1C84FF;
   }
     </style>
+
+
+
+    <style>
+.notifications {
+    position: fixed;
+    top: 100px;
+    right: 5px;
+    z-index: 101;
+}
+
+.toast {
+    position: relative;
+    padding: 10px;
+    color: #fff;
+    margin-bottom: 10px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+    border-radius: 5px;
+    --color: #0abf30;
+    background-image: linear-gradient(to right, #0abf3055, #22242f 30%);
+    animation: show 0.3s ease 1 forwards;
+}
+
+.toast i {
+    color: var(--color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+}
+
+.toast .title {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.toast span, .toast i:nth-child(3) {
+    color: #fff;
+    opacity: 0.6;
+}
+
+@keyframes show {
+    0% {
+        transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(-5%);
+    }
+    80% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-10%);
+    }
+}
+
+.toast::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color);
+    width: 100%;
+    height: 3px;
+    content: '';
+    box-shadow: 0 0 10px var(--color);
+    animation: timeOut 5s linear 1 forwards;
+}
+
+@keyframes timeOut {
+    to {
+        width: 0;
+    }
+}
+
+.toast.error {
+    --color: #f24d4c;
+    background-image: linear-gradient(to right, #f24d4c55, #22242F 30%);
+}
+
+.toast.warning {
+    --color: #e9bd0c;
+    background-image: linear-gradient(to right, #e9bd0c55, #22242F 30%);
+}
+
+.toast.info {
+    --color: #3498db;
+    background-image: linear-gradient(to right, #3498db55, #22242F 30%);
+}
+
+.right-content{
+    color: #fff;
+}
+
+span {
+    color: #fff;
+}
+
+.text-content1{
+        position: fixed;
+        display: inline-block;
+        height: 100vh;
+        align-items: center;
+        z-index: -1;
+    }
+
+    .text-content1 h1{
+        font-size: 32rem;
+        margin-left: 25%;
+        color: #ffffff15;
+        transform: translateX(-30%);
+        
+    }
+    
+    .container{
+    
+    ::before{
+      position: fixed;
+      content: "";
+      box-shadow: 0 0 100px 40px #ffffff08;
+      top: -10%;
+      left: -100%;
+      transform: rotate(-45deg);
+      height: 60rem;
+      transition: .7s all;
+
+    }
+    &:hover{
+      border: 1px solid #ffffff22;
+      box-shadow: 0 7px 50px 10px #000000aa;
+      transform: scale(1.015);
+      filter: brightness(1);
+      ::before{
+        filter: brightness(0);
+        top: -100%;
+        left: 200%;
+      }
+    }
+    }
+    
+  
+
+</style>
 </head>
 <body>
 
+    <div class="text-content1">
+        <h1>Mafia</h2>
+    </div>
+
     <!-- Video -->
     <video autoplay muted loop id="myVideo">
-        <source src="bgvideo.mp4" type="video/mp4">
+        <source src="video/bgvideo.mp4" type="video/mp4">
     </video>
+
+    <div class="notifications"></div>
+    {{#if successMessage}}
+
+    {{/if}}
+
+    {{#if errorMessage}}
+
+    {{/if}}
+
+
 
     <!-- Nav Bar -->
     <nav class="nav">
@@ -225,21 +390,20 @@
         <div class="container">
 
             <div class="left-content">
-                <img src="/uploads/{{this.imageurl}}" alt="{{this.title}}"  class="img-content">
+                <img src="/uploads/{{product.imageurl}}" alt="{{product.title}}"  class="img-content">
                 <h3>{{product.title}}</h3>
-                <span>Category: {{product.type}}</span>
+                <span>Category: {{product.type}}</span><br>
+                <span>Market Price: ${{product.price}}</span><br>
             </div>
 
             <div class="right-content">
                 <h1>Description</h1>
-                <p>{{product.description}}</p>
-                <!--<span>
-                    <br> Speed: ewnijwnfijnewijfnewif
-                    <br><br> Mass: newfnewijnewijnewiwnvij
-                    <br><br> Seats: nwenfewijfnijewnf
-                    <br><br> Features: cijewnfijewnfiewni
-                    <br><br> Best Use Case: cijewnfijewnfiewni
-                </span>-->
+                <p>{{product.seats}}</p><br>
+                <p>{{product.description}}</p><br>
+                <p>WEIGHT: {{product.weight}} Kg</p><br>
+                <p> FEATURES: <br> {{product.features}}</p><br>
+                <p> USE CASE: <br> {{product.usecasescenario}}</p><br>
+                
 
                 <span>
                     <!-- Add to Cart Btn -->
@@ -259,6 +423,36 @@
         error.src = 'audio/error.mp3';
     </script>
 
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const notifications = document.querySelector('.notifications');
+                const successMessage = "{{successMessage}}";    
+                const errorMessage = "{{errorMessage}}";
+
+                function createToast(type, icon, title, text) {
+                    let newToast = document.createElement('div');
+                    newToast.innerHTML = `
+                        <div class="toast ${type}">
+                            <i class="${icon}"></i>
+                            <div class="content">
+                                <div class="title">${title}</div>
+                                <span>${text}</span>
+                            </div>
+                            <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
+                        </div>`;
+                    notifications.appendChild(newToast);
+                    newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
+                }
+
+                if (successMessage) {
+                    createToast('success', 'fa-solid fa-circle-check', 'Success', successMessage);
+                }
+
+                if (errorMessage) {
+                    createToast('error', 'fa-solid fa-circle-exclamation', 'Message', errorMessage);
+                }
+            });
+        </script>
 </body>
 </html>
 

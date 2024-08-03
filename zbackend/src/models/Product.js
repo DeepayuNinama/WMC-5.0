@@ -31,8 +31,19 @@ const productSchema = new mongoose.Schema({
     adminApproved: {
         type: Boolean,
         default: false,
+    },
+    weight: {
+        type: String
+    },
+    seats: {
+        type: String
+    },
+    features: {
+        type: String
+    },
+    usecasescenario: {
+        trye: String
     }
-    
 });
 
 const Product = mongoose.model("Product", productSchema);
