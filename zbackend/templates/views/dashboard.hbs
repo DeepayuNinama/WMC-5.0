@@ -919,11 +919,21 @@
         <h1>Mafia</h2>
     </div>
 
+    <div class="notifications"></div>
+    {{#if successMessage}}
+
+    {{/if}}
+
+    {{#if errorMessage}}
+
+    {{/if}}
+    
+
     {{!-- Header new --}}
     <header>
         <div class="nav">
             <div class="nav-logo">
-                <p>Mafia</p>
+                <a href="/"><p>Mafia</p></a>
             </div>
             <div class="nav-menu" id="navMenu">
                 <ul>
@@ -1006,7 +1016,7 @@
                     <img class='tokenImage' src="/uploads/{{this.imageurl}}" alt="{{this.title}}"  class="product-img" />
                     <h2 class="product-title">{{this.title}}</h2>
                     <p class='description product-desc'>{{this.description}}</p>
-                    <p class='price'>${{this.price}}</p>
+                    <p class='price' data-price="{{this.price}}">$<span class="formatted-price">{{this.price}}</span></p>
                     <div class='tokenInfo'>
                         <div class="price">
                             <ins>◘</ins>
@@ -1039,6 +1049,78 @@
     
     <div id="preloader"></div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to format the price
+    function formatPrice(price) {
+        if (price >= 1000000) {
+            return (price / 1000000).toFixed(1) + 'M';
+        }
+        return price.toLocaleString();
+    }
+
+    // Function to update all prices on the page
+    function updatePrices() {
+        const priceElements = document.querySelectorAll('.price');
+        priceElements.forEach(function(priceElement) {
+            const price = parseFloat(priceElement.dataset.price);
+            if (!isNaN(price)) {
+                const formattedPrice = formatPrice(price);
+                priceElement.querySelector('.formatted-price').textContent = formattedPrice;
+            } else {
+                console.error('Invalid price:', priceElement.dataset.price);
+            }
+        });
+    }
+
+    updatePrices();
+});
+</script>
+
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function formatPrice(price) {
+                if (price >= 1000000) {
+                    return (price / 1000000).toFixed(1) + 'M';
+                }
+                return price.toLocaleString();
+            }
+
+            function updatePrices() {
+                const priceElements = document.querySelectorAll('.classPrice');
+
+                priceElements.forEach(function(priceElement) {
+                    const price = parseFloat(priceElement.dataset.price);
+                    if (!isNaN(price)) {
+                        const formattedPrice = formatPrice(price);
+                        priceElement.querySelector('.formatted-price').textContent = formattedPrice;
+                    } else {
+                        console.error('Invalid price:', priceElement.dataset.price);
+                    }
+                });
+            }
+
+            function updateTotalPrice() {
+                const priceElements = document.querySelectorAll('.classProd');
+                let totalPrice = 0;
+
+                priceElements.forEach(function(priceElement) {
+                    const price = parseFloat(priceElement.dataset.price);
+                    const quantity = parseInt(priceElement.dataset.quantity);
+                    if (!isNaN(price) && !isNaN(quantity)) {
+                        totalPrice += price * quantity;
+                    }
+                });
+
+                const formattedTotalPrice = formatPrice(totalPrice);
+                document.getElementById('total-price').textContent = `$${formattedTotalPrice}`;
+            }
+
+            updatePrices();
+            updateTotalPrice();
+        });
+    </script>
 
 
     <script>
@@ -1270,6 +1352,9 @@
                 }
                
             });
+
+
+            
         </script>
         
 </body>

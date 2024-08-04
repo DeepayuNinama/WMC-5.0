@@ -6,42 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="style.css"> -->
-     <style>
+    <title>Mafia | Registration</title>
+
+    <style>
         /* POPPINS FONT */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
-        *{  
+        * {  
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             cursor: url(../image/cursor.png), auto;
-            
         }
-        body{
+        body {
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
         }
-
         #myVideo {
             position: fixed;
             right: 0;
             bottom: 0;  
         }
-
-        .wrapper{
+        .wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 110vh;
             background: rgba(39, 39, 39, 0.4);
         }
-        .nav{
+        .nav {
             position: fixed;
             top: 0;
             display: flex;
@@ -52,28 +48,28 @@
             background: linear-gradient(rgba(39,39,39, 0.6), transparent);
             z-index: 1;
         }
-        .nav-logo p{
+        .nav-logo p {
             color: white;
             font-size: 25px;
             font-weight: 600;
         }
-        .nav-menu ul{
+        .nav-menu ul {
             display: flex;
         }
-        .nav-menu ul li{
+        .nav-menu ul li {
             list-style-type: none;
         }
-        .nav-menu ul li .link{
+        .nav-menu ul li .link {
             text-decoration: none;
             font-weight: 500;
             color: #fff;
             padding-bottom: 10px;
             margin: 0 25px;
         }
-        .link:hover, .active{
+        .link:hover, .active {
             border-bottom: 2px solid #fff;
         }
-        .nav-button .btn{
+        .nav-button .btn {
             width: 130px;
             height: 40px;
             font-weight: 500;
@@ -83,22 +79,22 @@
             cursor: pointer;
             transition: .3s ease;
         }
-        .btn:hover{
+        .btn:hover {
             background: rgba(255, 255, 255, 0.3);
         }
-        #registerBtn{
+        #registerBtn {
             margin-left: 15px;
         }
-        .btn.white-btn{
+        .btn.white-btn {
             background: rgba(255, 255, 255, 0.7);
         }
-        .btn.btn.white-btn:hover{
+        .btn.btn.white-btn:hover {
             background: rgba(255, 255, 255, 0.5);
         }
-        .nav-menu-btn{
+        .nav-menu-btn {
             display: none;
         }
-        .form-box{
+        .form-box {
             position: fixed;
             display: flex;
             align-items: center;
@@ -109,7 +105,7 @@
             width: 550px;
             border-radius: 15px;
         }
-        .login-container{
+        .login-container {
             position: absolute;
             left: 4px;
             width: 500px;
@@ -118,7 +114,7 @@
             transition: .5s ease-in-out;
             padding-left: 30px;
         }
-        .register-container{
+        .register-container {
             position: absolute;
             right: -520px;
             width: 500px;
@@ -126,29 +122,29 @@
             flex-direction: column;
             transition: .5s ease-in-out;
         }
-        .top span{
+        .top span {
             color: #fff;
             font-size: small;
             padding: 10px 0;
             display: flex;
             justify-content: center;
         }
-        .top span a{
+        .top span a {
             font-weight: 500;
             color: #fff;
             margin-left: 5px;
         }
-        header{
+        header {
             color: #fff;
             font-size: 30px;
             text-align: center;
             padding: 10px 0 30px 0;
         }
-        .two-forms{
+        .two-forms {
             display: flex;
             gap: 10px;
         }
-        .input-field{
+        .input-field {
             font-size: 15px;
             background: rgba(255, 255, 255, 0.265);
             color: #fff;
@@ -160,19 +156,19 @@
             outline: none;
             transition: .2s ease;
         }
-        .input-field:hover, .input-field:focus{
+        .input-field:hover, .input-field:focus {
             background: rgba(255, 255, 255, 0.25);
         }
-        ::-webkit-input-placeholder{
+        ::-webkit-input-placeholder {
             color: #fff;
         }
-        .input-box i{
+        .input-box i {
             position: relative;
             top: -35px;
             left: 17px;
             color: #fff;
         }
-        .submit{
+        .submit {
             font-size: 15px;
             font-weight: 500;
             color: black;
@@ -185,40 +181,39 @@
             cursor: pointer;
             transition: .3s ease-in-out;
         }
-        .submit:hover{
+        .submit:hover {
             background: rgba(255, 255, 255, 0.5);
             box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
         }
-        .two-col{
+        .two-col {
             display: flex;
             justify-content: space-between;
             color: #fff;
             font-size: small;
             margin-top: 10px;
         }
-        .two-col .one{
+        .two-col .one {
             display: flex;
             gap: 5px;
         }
-        .two label a{
+        .two label a {
             text-decoration: none;
             color: #fff;
         }
-        .two label a:hover{
+        .two label a:hover {
             text-decoration: underline;
         }
-
-        .form_login{
+        .form_login {
             margin-bottom: 470px;
         }
-        @media only screen and (max-width: 786px){
-            .nav-button{
+        @media only screen and (max-width: 786px) {
+            .nav-button {
                 display: none;
             }
-            .nav-menu.responsive{
+            .nav-menu.responsive {
                 top: 100px;
             }
-            .nav-menu{
+            .nav-menu {
                 position: absolute;
                 top: -800px;
                 display: flex;
@@ -229,14 +224,14 @@
                 backdrop-filter: blur(20px);
                 transition: .3s;
             }
-            .nav-menu ul{
+            .nav-menu ul {
                 flex-direction: column;
                 text-align: center;
             }
-            .nav-menu-btn{
+            .nav-menu-btn {
                 display: block;
             }
-            .nav-menu-btn i{
+            .nav-menu-btn i {
                 font-size: 25px;
                 color: #fff;
                 padding: 10px;
@@ -245,155 +240,77 @@
                 cursor: pointer;
                 transition: .3s;
             }
-            .nav-menu-btn i:hover{
+            .nav-menu-btn i:hover {
                 background: rgba(255, 255, 255, 0.15);
             }
         }
         @media only screen and (max-width: 540px) {
-            .wrapper{
+            .wrapper {
                 min-height: 100vh;
             }
-            .form-box{
+            .form-box {
                 width: 100%;
                 height: 500px;
             }
-            .register-container, .login-container{
+            .register-container, .login-container {
                 width: 100%;
                 padding: 0 20px;
             }
-            .register-container .two-forms{
+            .register-container .two-forms {
                 flex-direction: column;
                 gap: 0;
             }
         }
-
-        #myVideo{
+        #myVideo {
             position: absolute;
             top: 0;
             left: 0;
             object-fit: cover;
             width: 100%;
             height: 100%;
+            z-index: -1;
+            filter: brightness(50%);
         }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        /* Toast Notifications */
+        .notifications {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
         }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
+        .toast {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-    
-     </style>
-
-
-
-     <style>
-.notifications {
-    position: fixed;
-    top: 100px;
-    right: 5px;
-    z-index: 101;
-}
-
-.toast {
-    position: relative;
-    padding: 10px;
-    color: #fff;
-    margin-bottom: 10px;
-    width: 400px;
-    display: grid;
-    grid-template-columns: 70px 1fr 70px;
-    border-radius: 5px;
-    --color: #0abf30;
-    background-image: linear-gradient(to right, #0abf3055, #22242f 30%);
-    animation: show 0.3s ease 1 forwards;
-}
-
-.toast i {
-    color: var(--color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: x-large;
-}
-
-.toast .title {
-    font-size: x-large;
-    font-weight: bold;
-}
-
-.toast span, .toast i:nth-child(3) {
-    color: #fff;
-    opacity: 0.6;
-}
-
-@keyframes show {
-    0% {
-        transform: translateX(100%);
-    }
-    40% {
-        transform: translateX(-5%);
-    }
-    80% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-10%);
-    }
-}
-
-.toast::before {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: var(--color);
-    width: 100%;
-    height: 3px;
-    content: '';
-    box-shadow: 0 0 10px var(--color);
-    animation: timeOut 5s linear 1 forwards;
-}
-
-@keyframes timeOut {
-    to {
-        width: 0;
-    }
-}
-
-.toast.error {
-    --color: #f24d4c;
-    background-image: linear-gradient(to right, #f24d4c55, #22242F 30%);
-}
-
-.toast.warning {
-    --color: #e9bd0c;
-    background-image: linear-gradient(to right, #e9bd0c55, #22242F 30%);
-}
-
-.toast.info {
-    --color: #3498db;
-    background-image: linear-gradient(to right, #3498db55, #22242F 30%);
-}
-
-
+        .toast.success {
+            background-color: #4caf50;
+        }
+        .toast.error {
+            background-color: #f44336;
+        }
+        .toast i {
+            font-size: 20px;
+        }
+        .toast .content {
+            display: flex;
+            flex-direction: column;
+        }
+        .toast .content .title {
+            font-weight: bold;
+        }
+        .toast .content span {
+            font-size: 14px;
+        }
     </style>
-    <title>Mafia | Registration</title>
 </head>
 <body>
 
@@ -403,13 +320,8 @@
 </video>
 
 <div class="notifications"></div>
-    {{#if successMessage}}
-    {{/if}}
 
-    {{#if errorMessage}}
-    {{/if}}
-
- <div class="wrapper">
+<div class="wrapper">
     <nav class="nav">
         <div class="nav-logo">
             <p>Mafia</p>
@@ -424,18 +336,13 @@
         </div>
     </nav>
 
-<!--- Form box --->    
     <!--- Form --->
-    
     <div class="form-box">
-        <!------------------- login form -------------------------->
-        <form action="/register"  class="form_login" method="POST"> 
+        <form action="/register" class="form_login" method="POST"> 
             <div class="login-container" id="login">
                 <div class="top">
-                    <div class="top">
-                    <span>Have an account ? <a href="./login" >Login</a></span>
+                    <span>Have an account ? <a href="./login">Login</a></span>
                     <header>Sign Up</header>
-                </div>
                 </div>
                 <div class="two-forms">
                     <div class="input-box">
@@ -460,85 +367,52 @@
                     <i class="bx bx-lock-alt"></i>
                 </div>
                 <div class="input-box">
-                    <!-- submit btn -->
                     <input type="submit" class="submit" value="Register">
                 </div>
                 <div class="two-col">
-                    <!-- <div class="one">
-                        <input type="checkbox" id="login-check">
-                        <label for="login-check"> Remember Me</label>
-                    </div> -->
+                    <!-- Optional checkbox -->
                 </div>
             </div>
         </form>
     </div>
-</div>   
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
-
-
-    var a = document.getElementById("loginBtn");
-    var b = document.getElementById("registerBtn");
-    var x = document.getElementById("login");
-    var y = document.getElementById("register");
-
-    function login() {
-        x.style.left = "4px";
-        y.style.right = "-520px";
-        a.className += " white-btn";
-        b.className = "btn";
-        x.style.opacity = 1;
-        y.style.opacity = 0;
-    }
-
-    function register() {
-        x.style.left = "-510px";
-        y.style.right = "5px";
-        a.className = "btn";
-        b.className += " white-btn";
-        x.style.opacity = 0;
-        y.style.opacity = 1;
-    }
-
-</script>
 
 <script>
     var audio = new Audio();
-    audio.src='audio/click.mp3';
+    audio.src = 'audio/click.mp3';
     var error = new Audio();
     error.src = 'audio/error.mp3';
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const notifications = document.querySelector('.notifications');
+        const successMessage = "{{successMessage}}";
+        const errorMessage = "{{errorMessage}}";
+
+        function createToast(type, icon, title, text) {
+            let newToast = document.createElement('div');
+            newToast.className = `toast ${type}`;
+            newToast.innerHTML = `
+                <i class="${icon}"></i>
+                <div class="content">
+                    <div class="title">${title}</div>
+                    <span>${text}</span>
+                </div>
+                <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
+            `;
+            notifications.appendChild(newToast);
+            setTimeout(() => newToast.remove(), 5000);
+        }
+
+        if (successMessage && successMessage.trim() !== "") {
+            createToast('success', 'fa-solid fa-circle-check', 'Success', successMessage);
+        }
+
+        if (errorMessage && errorMessage.trim() !== "") {
+            createToast('error', 'fa-solid fa-circle-exclamation', 'Error', errorMessage);
+        }
+    });
 </script>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const notifications = document.querySelector('.notifications');
-                const successMessage = "{{successMessage}}";    
-                const errorMessage = "{{errorMessage}}";
-
-                function createToast(type, icon, title, text) {
-                    let newToast = document.createElement('div');
-                    newToast.innerHTML = `
-                        <div class="toast ${type}">
-                            <i class="${icon}"></i>
-                            <div class="content">
-                                <div class="title">${title}</div>
-                                <span>${text}</span>
-                            </div>
-                            <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
-                        </div>`;
-                    notifications.appendChild(newToast);
-                    newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
-                }
-
-                if (successMessage) {
-                    createToast('success', 'fa-solid fa-circle-check', 'Success', successMessage);
-                }
-
-                if (errorMessage) {
-                    createToast('error', 'fa-solid fa-circle-exclamation', 'Message', errorMessage);
-                }
-            });
-        </script>
-
 </body>
 </html>

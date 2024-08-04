@@ -116,6 +116,7 @@ body{
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding-top: 15px;
+    
 }
 
 .container h2{
@@ -427,6 +428,135 @@ body{
         .alert.success {
             background-color: #4CAF50;
         }
+
+
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        height: auto;
+        line-height: normal;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu ul li {
+        margin: 10px 0;
+    }
+
+    .container {
+        margin-top: 30px;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: auto;
+        padding: 20px;
+        height: auto;
+    }
+
+    .container h2 {
+        text-align: center;
+    }
+
+    .two-forms {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .input-box {
+        width: 100%;
+        margin-inline-end: 0;
+    }
+
+    .linebar {
+        width: 100%;
+    }
+
+    .radio-tile-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-container {
+        width: auto;
+        margin: 10px 0;
+    }
+
+    .allContent {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .linebar2 {
+        display: none;
+    }
+
+    .container1 {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .img-area {
+        height: auto;
+    }
+
+    .uploadBtn {
+        width: 100%;
+        height: 50px;
+        margin-left: 0;
+    }
+
+    .input-submit-box {
+        margin: 20px auto;
+        display: block;
+        width: 100%;
+    }
+
+    .toast {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+    }
+}
+
+/* Additional Media Query for Smaller Devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .nav {
+        padding: 10px 0;
+    }
+
+    .nav-logo p {
+        font-size: 20px;
+    }
+
+    .nav-button .btn {
+        width: 100px;
+        height: 30px;
+    }
+
+    .radio-tile-group h4 {
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .uploadBtn {
+        height: 40px;
+    }
+
+    .img-area h3 {
+        font-size: 12px;
+    }
+
+    .img-area p {
+        font-size: 8px;
+    }
+}
 
 </style>
 
